@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Адаптивный фон — Красная комната</title>
+    <title>Фон — Красная комната с белыми звёздами, сеткой и рамками</title>
     <style>
-        /* ========== БАЗОВЫЙ СБРОС И АДАПТИВНАЯ ТИПОГРАФИКА ========== */
-        *,
-        *::before,
-        *::after {
+        /* Базовый сброс */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         html {
-            font-size: 16px; /* базовый rem */
             -webkit-text-size-adjust: 100%;
             overflow-x: hidden;
         }
@@ -24,20 +21,17 @@
             background-color: #0a0506;
             width: 100%;
             min-height: 100vh;
-            min-height: 100dvh; /* для мобильных */
+            min-height: 100dvh;
             overflow-x: hidden;
             position: relative;
             font-family: 'Arial', 'Helvetica Neue', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: clamp(0.5rem, 3vw, 2rem);
         }
 
-        /* ========== ОСНОВНОЙ ФОН (МАСШТАБИРУЕТСЯ) ========== */
+        /* ========== ФОН (тот же самый, без изменений) ========== */
         .room-base {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background: 
@@ -54,37 +48,36 @@
             z-index: 0;
         }
 
-        /* ========== ТЕНИ И СВЕЧЕНИЯ (АДАПТИВНЫЕ) ========== */
         .room-shadow {
             position: fixed;
             border-radius: 50%;
-            filter: blur(clamp(40px, 8vw, 110px));
+            filter: blur(110px);
             z-index: 1;
             pointer-events: none;
         }
 
         .shadow-main {
-            width: clamp(200px, 80vw, 900px);
-            height: clamp(150px, 60vh, 600px);
-            background: radial-gradient(ellipse, rgba(0,0,0,0.9) 0%, transparent 70%);
+            width: 80vw;
+            height: 60vh;
+            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.9) 0%, transparent 70%);
             top: 30%;
             left: 10%;
             animation: shadowBreath 10s infinite alternate;
         }
 
         .shadow-side-left {
-            width: clamp(120px, 45vw, 500px);
-            height: clamp(200px, 85vh, 800px);
-            background: radial-gradient(ellipse, rgba(0,0,0,0.85) 0%, transparent 65%);
+            width: 45vw;
+            height: 85vh;
+            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.85) 0%, transparent 65%);
             top: 8%;
             left: -18%;
             animation: shadowBreath 12s infinite alternate-reverse;
         }
 
         .shadow-side-right {
-            width: clamp(100px, 40vw, 450px);
-            height: clamp(180px, 75vh, 700px);
-            background: radial-gradient(ellipse, rgba(0,0,0,0.75) 0%, transparent 60%);
+            width: 40vw;
+            height: 75vh;
+            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.75) 0%, transparent 60%);
             top: 18%;
             right: -12%;
             animation: shadowBreath 14s infinite alternate;
@@ -93,15 +86,15 @@
         .red-glow {
             position: fixed;
             border-radius: 50%;
-            filter: blur(clamp(50px, 10vw, 130px));
+            filter: blur(130px);
             z-index: 2;
             pointer-events: none;
             mix-blend-mode: screen;
         }
 
         .glow-center {
-            width: clamp(150px, 55vw, 700px);
-            height: clamp(150px, 55vw, 700px);
+            width: 55vw;
+            height: 55vw;
             background: radial-gradient(circle, 
                 rgba(230, 57, 70, 0.22) 0%, 
                 rgba(230, 57, 70, 0.08) 40%, 
@@ -112,8 +105,8 @@
         }
 
         .glow-deep {
-            width: clamp(120px, 45vw, 600px);
-            height: clamp(120px, 45vw, 600px);
+            width: 45vw;
+            height: 45vw;
             background: radial-gradient(circle, 
                 rgba(155, 28, 40, 0.28) 0%, 
                 rgba(155, 28, 40, 0.1) 35%, 
@@ -124,8 +117,8 @@
         }
 
         .glow-soft {
-            width: clamp(100px, 38vw, 500px);
-            height: clamp(100px, 38vw, 500px);
+            width: 38vw;
+            height: 38vw;
             background: radial-gradient(circle, 
                 rgba(255, 77, 90, 0.18) 0%, 
                 rgba(230, 57, 70, 0.06) 50%, 
@@ -136,8 +129,8 @@
         }
 
         .glow-floor {
-            width: clamp(200px, 65vw, 800px);
-            height: clamp(60px, 25vh, 250px);
+            width: 65vw;
+            height: 25vh;
             background: radial-gradient(ellipse, 
                 rgba(230, 57, 70, 0.2) 0%, 
                 transparent 70%);
@@ -146,19 +139,18 @@
             animation: glowPulse 9s infinite alternate;
         }
 
-        /* Лучи света */
         .light-shaft {
             position: fixed;
             z-index: 2;
             pointer-events: none;
-            filter: blur(clamp(2px, 0.5vw, 4px));
+            filter: blur(4px);
             opacity: 0.2;
             transform-origin: top center;
         }
 
         .shaft-1 {
-            width: clamp(2px, 0.5vw, 5px);
-            height: clamp(200px, 75vh, 700px);
+            width: 5px;
+            height: 75vh;
             background: linear-gradient(180deg, 
                 rgba(230, 57, 70, 0.45) 0%, 
                 rgba(230, 57, 70, 0.18) 40%, 
@@ -170,8 +162,8 @@
         }
 
         .shaft-2 {
-            width: clamp(1px, 0.3vw, 3px);
-            height: clamp(150px, 65vh, 600px);
+            width: 3px;
+            height: 65vh;
             background: linear-gradient(180deg, 
                 rgba(230, 57, 70, 0.3) 0%, 
                 rgba(230, 57, 70, 0.1) 50%, 
@@ -182,29 +174,29 @@
             animation: shaftFade 8s infinite alternate-reverse;
         }
 
-        /* ========== СЕТКИ (АДАПТИВНЫЕ) ========== */
+        /* ========== СЕТКИ (адаптивные, но выглядят как раньше) ========== */
         .grid-top-right {
             position: fixed;
-            top: clamp(10px, 3vw, 40px);
-            right: clamp(10px, 3vw, 40px);
-            width: clamp(100px, 35vw, 480px);
-            height: clamp(100px, 35vw, 480px);
+            top: clamp(10px, 4vw, 40px);
+            right: clamp(10px, 4vw, 40px);
+            width: clamp(100px, 45vw, 480px);
+            height: clamp(100px, 45vw, 480px);
             z-index: 3;
             pointer-events: none;
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px);
-            background-size: clamp(20px, 4vw, 40px) clamp(20px, 4vw, 40px);
+            background-size: clamp(15px, 4vw, 40px) clamp(15px, 4vw, 40px);
             opacity: 0.75;
             mask-image: radial-gradient(ellipse at 100% 0%, 
-                rgba(0,0,0,0.9) 0%, 
-                rgba(0,0,0,0.5) 40%, 
-                rgba(0,0,0,0.1) 70%, 
+                rgba(0, 0, 0, 0.9) 0%, 
+                rgba(0, 0, 0, 0.5) 40%, 
+                rgba(0, 0, 0, 0.1) 70%, 
                 transparent 100%);
             -webkit-mask-image: radial-gradient(ellipse at 100% 0%, 
-                rgba(0,0,0,0.9) 0%, 
-                rgba(0,0,0,0.5) 40%, 
-                rgba(0,0,0,0.1) 70%, 
+                rgba(0, 0, 0, 0.9) 0%, 
+                rgba(0, 0, 0, 0.5) 40%, 
+                rgba(0, 0, 0, 0.1) 70%, 
                 transparent 100%);
             animation: gridPulse1 9s infinite alternate;
         }
@@ -213,24 +205,24 @@
             position: fixed;
             top: 55%;
             left: clamp(5px, 2vw, 20px);
-            width: clamp(60px, 15vw, 180px);
-            height: clamp(60px, 15vw, 180px);
+            width: clamp(60px, 18vw, 180px);
+            height: clamp(60px, 18vw, 180px);
             z-index: 3;
             pointer-events: none;
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-            background-size: clamp(10px, 2vw, 25px) clamp(10px, 2vw, 25px);
+            background-size: clamp(10px, 2.5vw, 25px) clamp(10px, 2.5vw, 25px);
             opacity: 0.5;
             mask-image: radial-gradient(ellipse at 0% 50%, 
-                rgba(0,0,0,0.9) 0%, 
-                rgba(0,0,0,0.5) 40%, 
-                rgba(0,0,0,0.1) 70%, 
+                rgba(0, 0, 0, 0.9) 0%, 
+                rgba(0, 0, 0, 0.5) 40%, 
+                rgba(0, 0, 0, 0.1) 70%, 
                 transparent 100%);
             -webkit-mask-image: radial-gradient(ellipse at 0% 50%, 
-                rgba(0,0,0,0.9) 0%, 
-                rgba(0,0,0,0.5) 40%, 
-                rgba(0,0,0,0.1) 70%, 
+                rgba(0, 0, 0, 0.9) 0%, 
+                rgba(0, 0, 0, 0.5) 40%, 
+                rgba(0, 0, 0, 0.1) 70%, 
                 transparent 100%);
             animation: gridPulseSide 10s infinite alternate;
         }
@@ -239,50 +231,50 @@
             position: fixed;
             top: 15%;
             right: clamp(5px, 2vw, 20px);
-            width: clamp(60px, 15vw, 180px);
-            height: clamp(60px, 15vw, 180px);
+            width: clamp(60px, 18vw, 180px);
+            height: clamp(60px, 18vw, 180px);
             z-index: 3;
             pointer-events: none;
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-            background-size: clamp(10px, 2vw, 25px) clamp(10px, 2vw, 25px);
+            background-size: clamp(10px, 2.5vw, 25px) clamp(10px, 2.5vw, 25px);
             opacity: 0.5;
             mask-image: radial-gradient(ellipse at 100% 50%, 
-                rgba(0,0,0,0.9) 0%, 
-                rgba(0,0,0,0.5) 40%, 
-                rgba(0,0,0,0.1) 70%, 
+                rgba(0, 0, 0, 0.9) 0%, 
+                rgba(0, 0, 0, 0.5) 40%, 
+                rgba(0, 0, 0, 0.1) 70%, 
                 transparent 100%);
             -webkit-mask-image: radial-gradient(ellipse at 100% 50%, 
-                rgba(0,0,0,0.9) 0%, 
-                rgba(0,0,0,0.5) 40%, 
-                rgba(0,0,0,0.1) 70%, 
+                rgba(0, 0, 0, 0.9) 0%, 
+                rgba(0, 0, 0, 0.5) 40%, 
+                rgba(0, 0, 0, 0.1) 70%, 
                 transparent 100%);
             animation: gridPulseSide 11s infinite alternate-reverse;
         }
 
-        /* ========== РАМКИ (АДАПТИВНЫЕ) ========== */
+        /* ========== РАМКИ (тот же дизайн, адаптивные) ========== */
         .frame {
             position: fixed;
             z-index: 7;
             pointer-events: none;
-            border: clamp(1px, 0.15vw, 1.5px) solid rgba(255, 255, 255, 0.18);
+            border: 1.5px solid rgba(255, 255, 255, 0.18);
             border-radius: clamp(10px, 3vw, 30px);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             box-shadow: 
-                0 0 clamp(10px, 3vw, 30px) rgba(255, 255, 255, 0.06),
-                inset 0 0 clamp(10px, 3vw, 30px) rgba(255, 255, 255, 0.04);
-            width: clamp(200px, 42vw, 420px);
-            height: clamp(70px, 18vh, 130px);
+                0 0 30px rgba(255, 255, 255, 0.06),
+                inset 0 0 30px rgba(255, 255, 255, 0.04);
+            width: clamp(180px, 42vw, 420px);
+            height: clamp(60px, 18vh, 130px);
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.02);
         }
 
         .frame-1 {
-            top: clamp(2%, 4vh, 4%);
-            height: clamp(120px, 35vh, 280px);
+            top: 4%;
+            height: clamp(100px, 35vh, 280px);
             animation: frameFloat1 10s infinite alternate ease-in-out;
             overflow: hidden;
         }
@@ -302,7 +294,6 @@
             animation: frameFloat2 14s infinite alternate ease-in-out;
         }
 
-        /* Фото в рамке */
         .frame-photo {
             position: absolute;
             right: 0;
@@ -335,7 +326,6 @@
             animation: photoGlowPulse 3s infinite alternate;
         }
 
-        /* Тексты в рамке */
         .frame-title {
             position: absolute;
             top: clamp(8px, 2vh, 20px);
@@ -346,8 +336,8 @@
             color: rgba(180, 30, 40, 0.8);
             letter-spacing: clamp(0.3px, 0.1vw, 1px);
             text-shadow: 
-                0 0 clamp(4px, 1vw, 10px) rgba(180, 30, 40, 0.4),
-                0 0 clamp(8px, 2vw, 20px) rgba(180, 30, 40, 0.2);
+                0 0 10px rgba(180, 30, 40, 0.4),
+                0 0 20px rgba(180, 30, 40, 0.2);
             text-transform: uppercase;
             white-space: nowrap;
         }
@@ -363,7 +353,7 @@
                 rgba(230, 57, 70, 0.2) 100%);
             z-index: 9;
             border-radius: 2px;
-            box-shadow: 0 0 clamp(4px, 1vw, 10px) rgba(230, 57, 70, 0.3);
+            box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
         }
 
         .frame-subtitle {
@@ -379,7 +369,6 @@
             line-height: 1.8;
         }
 
-        /* Плюсики */
         .plus {
             position: absolute;
             right: clamp(8px, 1.8vw, 18px);
@@ -392,7 +381,7 @@
             font-size: clamp(0.7rem, 2.2vw, 1.4rem);
             font-weight: bold;
             color: rgba(255, 255, 255, 0.45);
-            text-shadow: 0 0 clamp(3px, 0.8vw, 8px) rgba(255, 255, 255, 0.15);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
             line-height: 1;
             text-align: center;
         }
@@ -424,7 +413,6 @@
             100% { opacity: 1; transform: translateY(-50%) scale(1.1); }
         }
 
-        /* Туман и пыль */
         .floor-mist {
             position: fixed;
             width: clamp(200px, 75vw, 800px);
@@ -446,24 +434,25 @@
             border-radius: 50%;
             z-index: 3;
             pointer-events: none;
-            box-shadow: 0 0 clamp(2px, 0.5vw, 4px) rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
             animation: dustFloat 10s infinite alternate ease-in-out;
         }
 
-        /* Виньетка и шум */
         .vignette-deep {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at center, transparent 25%, rgba(10,5,6,0.8) 70%, rgba(10,5,6,0.95) 100%);
+            background: radial-gradient(ellipse at center, transparent 25%, rgba(10, 5, 6, 0.8) 70%, rgba(10, 5, 6, 0.95) 100%);
             z-index: 5;
             pointer-events: none;
         }
 
         .noise-texture {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
@@ -474,155 +463,51 @@
             mix-blend-mode: overlay;
         }
 
-        /* ========== АНИМАЦИИ ========== */
+        /* ========== АНИМАЦИИ (тот же характер) ========== */
         @keyframes shadowBreath {
             0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-            100% { transform: translate(clamp(10px, 3vw, 30px), clamp(10px, 2vw, 20px)) scale(1.1); opacity: 1; }
+            100% { transform: translate(30px, 20px) scale(1.1); opacity: 1; }
         }
         @keyframes glowPulse {
             0% { opacity: 0.5; transform: scale(1); }
             100% { opacity: 0.9; transform: scale(1.2); }
         }
         @keyframes shaftFade {
-            0% { opacity: 0.08; filter: blur(clamp(1px, 0.5vw, 4px)); }
-            100% { opacity: 0.3; filter: blur(clamp(0.5px, 0.2vw, 1.5px)); }
+            0% { opacity: 0.08; filter: blur(4px); }
+            100% { opacity: 0.3; filter: blur(1.5px); }
         }
         @keyframes gridPulse1 {
             0% { opacity: 0.6; transform: translate(0, 0); }
-            100% { opacity: 0.85; transform: translate(clamp(-3px, -1vw, -10px), clamp(3px, 1vw, 10px)); }
+            100% { opacity: 0.85; transform: translate(-10px, 10px); }
         }
         @keyframes gridPulseSide {
             0% { opacity: 0.35; transform: translate(0, 0); }
-            100% { opacity: 0.6; transform: translate(clamp(2px, 0.5vw, 5px), clamp(-2px, -0.5vw, -5px)); }
+            100% { opacity: 0.6; transform: translate(5px, -5px); }
         }
         @keyframes frameFloat1 {
             0% { transform: translateX(-50%) translateY(0); }
-            100% { transform: translateX(-50%) translateY(clamp(-1px, -0.3vw, -3px)); }
+            100% { transform: translateX(-50%) translateY(-3px); }
         }
         @keyframes frameFloat2 {
             0% { transform: translateX(-50%) translateY(0); }
-            100% { transform: translateX(-50%) translateY(clamp(-0.5px, -0.2vw, -2px)); }
+            100% { transform: translateX(-50%) translateY(-2px); }
         }
         @keyframes frameFloat3 {
             0% { transform: translateX(-50%) translateY(0); }
-            100% { transform: translateX(-50%) translateY(clamp(-1.5px, -0.4vw, -4px)); }
+            100% { transform: translateX(-50%) translateY(-4px); }
         }
         @keyframes mistFloat {
             0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
-            100% { transform: translate(clamp(10px, 3vw, 30px), clamp(-3px, -1vw, -10px)) scale(1.1); opacity: 0.8; }
+            100% { transform: translate(30px, -10px) scale(1.1); opacity: 0.8; }
         }
         @keyframes dustFloat {
             0% { transform: translate(0, 0); opacity: 0.3; }
-            100% { transform: translate(clamp(5px, 1vw, 12px), clamp(-8px, -2vw, -20px)); opacity: 0.7; }
-        }
-
-        /* ========== МЕДИА-ЗАПРОСЫ ДЛЯ РАЗНЫХ ЭКРАНОВ ========== */
-        @media (max-width: 768px) {
-            body {
-                padding: clamp(0.3rem, 2vw, 1rem);
-            }
-            .frame {
-                width: clamp(160px, 90vw, 400px);
-                height: clamp(60px, 16vh, 100px);
-            }
-            .frame-1 {
-                height: clamp(100px, 30vh, 180px);
-            }
-            .frame-2 { top: 32%; }
-            .frame-3 { top: 50%; }
-            .frame-4 { top: 68%; }
-            .frame-subtitle {
-                max-width: clamp(70px, 50vw, 160px);
-                font-size: clamp(0.5rem, 2.5vw, 0.8rem);
-                line-height: 1.6;
-            }
-            .frame-title {
-                font-size: clamp(0.6rem, 4vw, 1rem);
-                letter-spacing: clamp(0.2px, 0.3vw, 0.5px);
-            }
-            .frame-divider {
-                top: clamp(20px, 7vh, 45px);
-                width: clamp(60px, 40vw, 140px);
-            }
-            .frame-photo {
-                width: clamp(30%, 40%, 40%);
-                height: clamp(50%, 70%, 70%);
-            }
-            .photo-glow {
-                width: clamp(35%, 42%, 42%);
-                height: clamp(55%, 75%, 75%);
-            }
-            .plus {
-                font-size: clamp(0.6rem, 3vw, 1rem);
-                width: clamp(8px, 4vw, 14px);
-                height: clamp(8px, 4vw, 14px);
-            }
-            .grid-top-right {
-                width: clamp(70px, 30vw, 200px);
-                height: clamp(70px, 30vw, 200px);
-                top: clamp(5px, 2vw, 20px);
-                right: clamp(5px, 2vw, 20px);
-            }
-            .grid-left, .grid-right {
-                width: clamp(40px, 18vw, 80px);
-                height: clamp(40px, 18vw, 80px);
-            }
-            .star-tiny { font-size: clamp(1px, 0.8vw, 2px); }
-            .star-small { font-size: clamp(1.5px, 1vw, 3px); }
-            .star-micro { font-size: clamp(0.8px, 0.5vw, 1.5px); }
-            .star-medium { font-size: clamp(1.8px, 1.2vw, 3.5px); }
-        }
-
-        @media (max-width: 480px) {
-            .frame {
-                width: clamp(140px, 92vw, 350px);
-                height: clamp(50px, 14vh, 85px);
-                border-radius: clamp(5px, 2vw, 12px);
-            }
-            .frame-1 {
-                height: clamp(80px, 25vh, 140px);
-            }
-            .frame-2 { top: 30%; }
-            .frame-3 { top: 48%; }
-            .frame-4 { top: 65%; }
-            .frame-subtitle {
-                max-width: clamp(55px, 45vw, 130px);
-                font-size: clamp(0.45rem, 2.2vw, 0.7rem);
-                line-height: 1.5;
-                top: clamp(25px, 8vh, 55px);
-            }
-            .frame-title {
-                font-size: clamp(0.5rem, 3.5vw, 0.85rem);
-            }
-            .frame-divider {
-                top: clamp(15px, 5vh, 35px);
-                width: clamp(50px, 35vw, 110px);
-            }
-            .frame-photo {
-                width: clamp(28%, 38%, 38%);
-                height: clamp(45%, 65%, 65%);
-            }
-            .photo-glow {
-                width: clamp(32%, 40%, 40%);
-                height: clamp(50%, 70%, 70%);
-            }
-        }
-
-        @media (orientation: landscape) and (max-height: 500px) {
-            .frame {
-                width: clamp(180px, 30vw, 350px);
-                height: clamp(40px, 18vh, 70px);
-            }
-            .frame-1 {
-                height: clamp(70px, 28vh, 120px);
-            }
-            .frame-2 { top: 25%; }
-            .frame-3 { top: 45%; }
-            .frame-4 { top: 62%; }
+            100% { transform: translate(12px, -20px); opacity: 0.7; }
         }
     </style>
 </head>
 <body>
+    <!-- Фон и свечения -->
     <div class="room-base"></div>
     <div class="room-shadow shadow-main"></div>
     <div class="room-shadow shadow-side-left"></div>
@@ -633,11 +518,16 @@
     <div class="red-glow glow-floor"></div>
     <div class="light-shaft shaft-1"></div>
     <div class="light-shaft shaft-2"></div>
+
+    <!-- Сетки -->
     <div class="grid-top-right"></div>
     <div class="grid-left"></div>
     <div class="grid-right"></div>
+
+    <!-- Туман -->
     <div class="floor-mist"></div>
 
+    <!-- Пыль -->
     <div class="dust" style="top: 18%; left: 28%; animation-delay: 0s;"></div>
     <div class="dust" style="top: 32%; left: 72%; animation-delay: 0.8s;"></div>
     <div class="dust" style="top: 48%; left: 12%; animation-delay: 1.6s;"></div>
@@ -649,6 +539,7 @@
     <div class="dust" style="top: 82%; left: 18%; animation-delay: 1.4s;"></div>
     <div class="dust" style="top: 12%; left: 62%; animation-delay: 2.7s;"></div>
 
+    <!-- Рамки -->
     <div class="frame frame-1">
         <div class="frame-title">Викладач англійської</div>
         <div class="frame-divider"></div>
@@ -660,6 +551,7 @@
     <div class="frame frame-3"><div class="plus">+</div></div>
     <div class="frame frame-4"><div class="plus">+</div></div>
 
+    <!-- Звёзды -->
     <div class="star star-tiny" style="left: 3%; animation-duration: 22s; animation-delay: 0s;">✦</div>
     <div class="star star-small" style="left: 7%; animation-duration: 25s; animation-delay: 1s;">✧</div>
     <div class="star star-micro" style="left: 11%; animation-duration: 18s; animation-delay: 2s;">✦</div>
