@@ -2,352 +2,208 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Адаптивный фон — Красная комната</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фон — Красная комната</title>
     <style>
-        /* ========== БАЗОВЫЙ СБРОС ========== */
-        *,
-        *::before,
-        *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html {
-            font-size: 16px;
-            -webkit-text-size-adjust: 100%;
-            -moz-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-            overflow: hidden;
-            height: 100%;
-            width: 100%;
         }
 
         body {
             background-color: #0a0506;
             width: 100%;
             min-height: 100vh;
-            min-height: 100dvh;
             overflow: hidden;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            font-family: 'Arial', 'Helvetica Neue', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            padding-top: env(safe-area-inset-top);
-            padding-bottom: env(safe-area-inset-bottom);
-            padding-left: env(safe-area-inset-left);
-            padding-right: env(safe-area-inset-right);
+            position: relative;
+            font-family: Arial, sans-serif;
         }
 
-        /* ========== УНИВЕРСАЛЬНЫЕ УТИЛИТЫ ========== */
-        .fixed-layer {
-            position: fixed;
-            pointer-events: none;
-            will-change: transform, opacity;
-        }
-
-        /* ========== БАЗОВЫЙ ФОН ========== */
         .room-base {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            height: 100dvh;
-            background:
+            height: 100vh;
+            background: 
                 radial-gradient(ellipse at 50% 40%, rgba(45, 8, 12, 0.8) 0%, transparent 60%),
                 radial-gradient(ellipse at 15% 85%, rgba(35, 5, 8, 0.9) 0%, transparent 50%),
                 radial-gradient(ellipse at 85% 15%, rgba(28, 4, 7, 0.7) 0%, transparent 45%),
-                linear-gradient(180deg,
-                    #0d0405 0%,
-                    #1a0709 20%,
-                    #22090c 40%,
-                    #160607 60%,
-                    #0b0304 80%,
-                    #090203 100%);
+                linear-gradient(180deg, #0d0405 0%, #1a0709 20%, #22090c 40%, #160607 60%, #0b0304 80%, #090203 100%);
             z-index: 0;
         }
 
-        /* ========== ОБЪЁМНЫЕ ТЕНИ ========== */
-        .room-shadow {
+        .shadow {
             position: fixed;
             border-radius: 50%;
-            filter: blur(clamp(3rem, 10vw, 7rem));
-            -webkit-filter: blur(clamp(3rem, 10vw, 7rem));
-            -moz-filter: blur(clamp(3rem, 10vw, 7rem));
+            filter: blur(80px);
             z-index: 1;
-            pointer-events: none;
-            will-change: transform, opacity;
         }
 
-        .shadow-main {
+        .shadow-1 {
             width: 80vw;
             height: 60vh;
-            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.9) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(0,0,0,0.9) 0%, transparent 70%);
             top: 30%;
             left: 10%;
-            animation: shadowBreath 10s infinite alternate;
         }
 
-        .shadow-side-left {
+        .shadow-2 {
             width: 45vw;
             height: 85vh;
-            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.85) 0%, transparent 65%);
+            background: radial-gradient(ellipse, rgba(0,0,0,0.85) 0%, transparent 65%);
             top: 8%;
             left: -18%;
-            animation: shadowBreath 12s infinite alternate-reverse;
         }
 
-        .shadow-side-right {
+        .shadow-3 {
             width: 40vw;
             height: 75vh;
-            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.75) 0%, transparent 60%);
+            background: radial-gradient(ellipse, rgba(0,0,0,0.75) 0%, transparent 60%);
             top: 18%;
             right: -12%;
-            animation: shadowBreath 14s infinite alternate;
         }
 
-        /* ========== КРАСНОЕ СВЕЧЕНИЕ ========== */
-        .red-glow {
+        .glow {
             position: fixed;
             border-radius: 50%;
-            filter: blur(clamp(4rem, 12vw, 8rem));
-            -webkit-filter: blur(clamp(4rem, 12vw, 8rem));
+            filter: blur(100px);
             z-index: 2;
-            pointer-events: none;
-            mix-blend-mode: screen;
-            will-change: opacity, transform;
         }
 
-        .glow-center {
+        .glow-1 {
             width: 55vw;
             height: 55vw;
-            background: radial-gradient(circle,
-                rgba(230, 57, 70, 0.22) 0%,
-                rgba(230, 57, 70, 0.08) 40%,
-                transparent 70%);
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.22) 0%, transparent 70%);
             top: 28%;
             left: 22%;
-            animation: glowPulse 8s infinite alternate;
         }
 
-        .glow-deep {
+        .glow-2 {
             width: 45vw;
             height: 45vw;
-            background: radial-gradient(circle,
-                rgba(155, 28, 40, 0.28) 0%,
-                rgba(155, 28, 40, 0.1) 35%,
-                transparent 65%);
+            background: radial-gradient(circle, rgba(155, 28, 40, 0.28) 0%, transparent 65%);
             bottom: 8%;
             right: 12%;
-            animation: glowPulse 10s infinite alternate-reverse;
         }
 
-        .glow-soft {
+        .glow-3 {
             width: 38vw;
             height: 38vw;
-            background: radial-gradient(circle,
-                rgba(255, 77, 90, 0.18) 0%,
-                rgba(230, 57, 70, 0.06) 50%,
-                transparent 70%);
+            background: radial-gradient(circle, rgba(255, 77, 90, 0.18) 0%, transparent 70%);
             top: 8%;
             left: 48%;
-            animation: glowPulse 7s infinite alternate;
         }
 
-        .glow-floor {
+        .glow-4 {
             width: 65vw;
             height: 25vh;
-            background: radial-gradient(ellipse,
-                rgba(230, 57, 70, 0.2) 0%,
-                transparent 70%);
+            background: radial-gradient(ellipse, rgba(230, 57, 70, 0.2) 0%, transparent 70%);
             bottom: -5%;
             left: 18%;
-            animation: glowPulse 9s infinite alternate;
         }
 
-        /* ========== ЛУЧИ СВЕТА ========== */
-        .light-shaft {
+        .grid {
             position: fixed;
-            z-index: 2;
-            pointer-events: none;
-            filter: blur(0.25rem);
-            -webkit-filter: blur(0.25rem);
-            opacity: 0.2;
-            transform-origin: top center;
-            will-change: opacity, filter;
-        }
-
-        .shaft-1 {
-            width: clamp(0.2rem, 0.5vw, 0.35rem);
-            height: 75vh;
-            background: linear-gradient(180deg,
-                rgba(230, 57, 70, 0.45) 0%,
-                rgba(230, 57, 70, 0.18) 40%,
-                transparent 85%);
-            top: -10%;
-            left: 28%;
-            transform: rotate(5deg);
-            animation: shaftFade 6s infinite alternate;
-        }
-
-        .shaft-2 {
-            width: clamp(0.15rem, 0.3vw, 0.2rem);
-            height: 65vh;
-            background: linear-gradient(180deg,
-                rgba(230, 57, 70, 0.3) 0%,
-                rgba(230, 57, 70, 0.1) 50%,
-                transparent 90%);
-            top: -5%;
-            right: 22%;
-            transform: rotate(-4deg);
-            animation: shaftFade 8s infinite alternate-reverse;
-        }
-
-        /* ========== СЕТКИ ========== */
-        .grid-top-right {
-            position: fixed;
-            top: clamp(0.5rem, 4vw, 2.5rem);
-            right: clamp(0.5rem, 4vw, 2.5rem);
-            width: clamp(6rem, 48vw, 30rem);
-            height: clamp(6rem, 48vw, 30rem);
             z-index: 3;
-            pointer-events: none;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px);
-            background-size: clamp(1rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2.5rem);
-            opacity: 0.75;
-            mask-image: radial-gradient(ellipse at 100% 0%,
-                rgba(0, 0, 0, 0.9) 0%,
-                rgba(0, 0, 0, 0.5) 40%,
-                rgba(0, 0, 0, 0.1) 70%,
-                transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse at 100% 0%,
-                rgba(0, 0, 0, 0.9) 0%,
-                rgba(0, 0, 0, 0.5) 40%,
-                rgba(0, 0, 0, 0.1) 70%,
-                transparent 100%);
-            animation: gridPulse1 9s infinite alternate;
-            will-change: opacity, transform;
+            opacity: 0.5;
         }
 
-        .grid-left {
-            position: fixed;
+        .grid-1 {
+            top: 40px;
+            right: 40px;
+            width: 300px;
+            height: 300px;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.16) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.16) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.7;
+        }
+
+        .grid-2 {
             top: 55%;
-            left: clamp(0.3rem, 2vw, 1.25rem);
-            width: clamp(4rem, 20vw, 11rem);
-            height: clamp(4rem, 20vw, 11rem);
-            z-index: 3;
-            pointer-events: none;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-            background-size: clamp(0.6rem, 2.5vw, 1.5rem) clamp(0.6rem, 2.5vw, 1.5rem);
+            left: 20px;
+            width: 150px;
+            height: 150px;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+            background-size: 25px 25px;
             opacity: 0.5;
-            mask-image: radial-gradient(ellipse at 0% 50%,
-                rgba(0, 0, 0, 0.9) 0%,
-                rgba(0, 0, 0, 0.5) 40%,
-                rgba(0, 0, 0, 0.1) 70%,
-                transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse at 0% 50%,
-                rgba(0, 0, 0, 0.9) 0%,
-                rgba(0, 0, 0, 0.5) 40%,
-                rgba(0, 0, 0, 0.1) 70%,
-                transparent 100%);
-            animation: gridPulseSide 10s infinite alternate;
         }
 
-        .grid-right {
-            position: fixed;
+        .grid-3 {
             top: 15%;
-            right: clamp(0.3rem, 2vw, 1.25rem);
-            width: clamp(4rem, 20vw, 11rem);
-            height: clamp(4rem, 20vw, 11rem);
-            z-index: 3;
-            pointer-events: none;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-            background-size: clamp(0.6rem, 2.5vw, 1.5rem) clamp(0.6rem, 2.5vw, 1.5rem);
+            right: 20px;
+            width: 150px;
+            height: 150px;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
+            background-size: 25px 25px;
             opacity: 0.5;
-            mask-image: radial-gradient(ellipse at 100% 50%,
-                rgba(0, 0, 0, 0.9) 0%,
-                rgba(0, 0, 0, 0.5) 40%,
-                rgba(0, 0, 0, 0.1) 70%,
-                transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse at 100% 50%,
-                rgba(0, 0, 0, 0.9) 0%,
-                rgba(0, 0, 0, 0.5) 40%,
-                rgba(0, 0, 0, 0.1) 70%,
-                transparent 100%);
-            animation: gridPulseSide 11s infinite alternate-reverse;
         }
 
-        /* ========== РАМКИ ========== */
         .frame {
             position: fixed;
             z-index: 7;
-            pointer-events: none;
-            border: 1.5px solid rgba(255, 255, 255, 0.18);
-            border-radius: clamp(0.8rem, 3vw, 2rem);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            -moz-backdrop-filter: blur(8px);
-            box-shadow:
-                0 0 clamp(1rem, 3vw, 2rem) rgba(255, 255, 255, 0.06),
-                inset 0 0 clamp(1rem, 3vw, 2rem) rgba(255, 255, 255, 0.04);
-            width: clamp(12rem, 42vw, 26rem);
-            height: clamp(4.5rem, 18vh, 8rem);
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.02);
-            will-change: transform;
+            border: 1.5px solid rgba(255,255,255,0.18);
+            border-radius: 30px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.06), inset 0 0 30px rgba(255,255,255,0.04);
+            background: rgba(255,255,255,0.02);
         }
 
         .frame-1 {
-            top: clamp(1rem, 4vh, 4%);
-            height: clamp(8rem, 35vh, 17rem);
-            animation: frameFloat1 10s infinite alternate ease-in-out;
+            top: 4%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 420px;
+            height: 280px;
             overflow: hidden;
         }
 
         .frame-2 {
-            top: clamp(28%, 42vh, 42%);
-            animation: frameFloat3 12s infinite alternate ease-in-out;
+            top: 42%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 420px;
+            height: 130px;
         }
 
         .frame-3 {
-            top: clamp(43%, 61vh, 61%);
-            animation: frameFloat1 13s infinite alternate ease-in-out;
+            top: 61%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 420px;
+            height: 130px;
         }
 
         .frame-4 {
-            top: clamp(58%, 80vh, 80%);
-            animation: frameFloat2 14s infinite alternate ease-in-out;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 420px;
+            height: 130px;
         }
 
-        /* ========== ФОТО В РАМКЕ ========== */
-        .frame-photo {
+        .photo {
             position: absolute;
             right: 0;
             top: 50%;
             transform: translateY(-50%);
-            width: clamp(35%, 42%, 42%);
-            height: clamp(60%, 80%, 80%);
-            border-radius: clamp(0.5rem, 2vw, 1.25rem);
+            width: 42%;
+            height: 80%;
+            border-radius: 20px;
             object-fit: cover;
             opacity: 0.8;
             filter: grayscale(30%) contrast(1.1) brightness(0.9);
-            -webkit-filter: grayscale(30%) contrast(1.1) brightness(0.9);
-            transition: 0.4s;
             z-index: 10;
-            will-change: opacity, filter;
         }
 
         .photo-glow {
@@ -355,470 +211,182 @@
             right: 0;
             top: 50%;
             transform: translateY(-50%);
-            width: clamp(35%, 45%, 45%);
-            height: clamp(60%, 85%, 85%);
-            border-radius: clamp(0.5rem, 2vw, 1.5rem);
-            background: radial-gradient(ellipse,
-                rgba(230, 57, 70, 0.5) 0%,
-                rgba(230, 57, 70, 0.25) 40%,
-                rgba(230, 57, 70, 0.08) 70%,
-                transparent 100%);
-            filter: blur(clamp(1rem, 4vw, 2.5rem));
-            -webkit-filter: blur(clamp(1rem, 4vw, 2.5rem));
+            width: 45%;
+            height: 85%;
+            border-radius: 25px;
+            background: radial-gradient(ellipse, rgba(230,57,70,0.5) 0%, rgba(230,57,70,0.25) 40%, transparent 70%);
+            filter: blur(40px);
             z-index: 9;
-            animation: photoGlowPulse 3s infinite alternate;
-            will-change: opacity, transform;
         }
 
-        /* ========== ТЕКСТ В РАМКЕ ========== */
-        .frame-title {
+        .title {
             position: absolute;
-            top: clamp(0.5rem, 2vh, 1.25rem);
-            left: clamp(0.6rem, 2.5vw, 1.5rem);
+            top: 20px;
+            left: 25px;
             z-index: 9;
-            font-size: clamp(0.7rem, 2.5vw, 1.6rem);
+            font-size: 26px;
             font-weight: 900;
             color: rgba(180, 30, 40, 0.8);
-            letter-spacing: clamp(0.2px, 0.1vw, 1px);
-            text-shadow:
-                0 0 clamp(0.3rem, 1vw, 0.6rem) rgba(180, 30, 40, 0.4),
-                0 0 clamp(0.6rem, 2vw, 1.25rem) rgba(180, 30, 40, 0.2);
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(180,30,40,0.4), 0 0 20px rgba(180,30,40,0.2);
             text-transform: uppercase;
-            white-space: nowrap;
-            will-change: transform;
         }
 
-        .frame-divider {
+        .divider {
             position: absolute;
-            top: clamp(1.8rem, 9vh, 5.9rem);
-            left: clamp(0.6rem, 2.5vw, 1.5rem);
-            width: clamp(5rem, 22vw, 13.75rem);
-            height: clamp(0.15rem, 0.4vh, 0.25rem);
-            background: linear-gradient(90deg,
-                rgba(230, 57, 70, 0.7) 0%,
-                rgba(230, 57, 70, 0.2) 100%);
-            z-index: 9;
+            top: 95px;
+            left: 25px;
+            width: 220px;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(230,57,70,0.7) 0%, rgba(230,57,70,0.2) 100%);
             border-radius: 2px;
-            box-shadow: 0 0 clamp(0.3rem, 1vw, 0.6rem) rgba(230, 57, 70, 0.3);
-        }
-
-        .frame-inner {
-            position: absolute;
-            top: clamp(2.2rem, 11vh, 7.2rem);
-            left: clamp(0.5rem, 2vw, 1.25rem);
-            width: clamp(6rem, 23vw, 14.4rem);
-            height: clamp(4rem, 15vh, 9.4rem);
-            border: 1.5px solid rgba(255, 255, 255, 0.18);
-            border-radius: clamp(0.8rem, 3vw, 2rem);
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            -moz-backdrop-filter: blur(15px);
-            box-shadow:
-                0 0 clamp(1rem, 3vw, 2rem) rgba(255, 255, 255, 0.06),
-                inset 0 0 clamp(1rem, 3vw, 2rem) rgba(255, 255, 255, 0.04);
-            z-index: 8;
-            pointer-events: none;
-        }
-
-        .frame-subtitle {
-            position: absolute;
-            top: clamp(2.4rem, 12vh, 7.8rem);
-            left: clamp(0.7rem, 3vw, 2rem);
+            box-shadow: 0 0 10px rgba(230,57,70,0.3);
             z-index: 9;
-            font-size: clamp(0.55rem, 1.6vw, 0.95rem);
-            font-weight: 900;
-            color: rgba(160, 160, 168, 0.6);
-            letter-spacing: clamp(0.1px, 0.05vw, 0.3px);
-            max-width: clamp(5rem, 19vw, 11.9rem);
-            line-height: 1.5;
-            will-change: transform;
         }
 
-        /* ========== ПЛЮСИКИ ========== */
+        .inner-frame {
+            position: absolute;
+            top: 115px;
+            left: 20px;
+            width: 230px;
+            height: 150px;
+            border: 1.5px solid rgba(255,255,255,0.18);
+            border-radius: 30px;
+            background: rgba(255,255,255,0.02);
+            box-shadow: 0 0 30px rgba(255,255,255,0.06), inset 0 0 30px rgba(255,255,255,0.04);
+            z-index: 8;
+        }
+
+        .subtitle {
+            position: absolute;
+            top: 125px;
+            left: 32px;
+            z-index: 9;
+            font-size: 15px;
+            font-weight: 900;
+            color: rgba(160,160,168,0.6);
+            letter-spacing: 1px;
+            max-width: 190px;
+            line-height: 1.5;
+        }
+
         .plus {
             position: absolute;
-            right: clamp(0.5rem, 1.8vw, 1.1rem);
-            bottom: clamp(0.5rem, 1.8vh, 1.1rem);
-            width: clamp(0.8rem, 2.4vw, 1.5rem);
-            height: clamp(0.8rem, 2.4vw, 1.5rem);
+            right: 18px;
+            bottom: 18px;
+            width: 24px;
+            height: 24px;
             z-index: 8;
-            pointer-events: none;
             opacity: 0.3;
-            font-size: clamp(0.7rem, 2.2vw, 1.4rem);
+            font-size: 22px;
             font-weight: bold;
-            color: rgba(255, 255, 255, 0.45);
-            text-shadow: 0 0 clamp(0.2rem, 0.8vw, 0.5rem) rgba(255, 255, 255, 0.15);
+            color: rgba(255,255,255,0.45);
+            text-shadow: 0 0 8px rgba(255,255,255,0.15);
             line-height: 1;
             text-align: center;
         }
 
-        /* ========== ЗВЁЗДЫ ========== */
         .star {
             position: fixed;
             z-index: 4;
-            pointer-events: none;
             color: #ffffff;
             opacity: 0.3;
-            animation: starDriftDown linear infinite;
-            will-change: transform, opacity;
+            animation: starFall linear infinite;
         }
 
-        .star-tiny { font-size: clamp(0.1rem, 0.4vw, 0.2rem); }
-        .star-small { font-size: clamp(0.15rem, 0.5vw, 0.25rem); }
-        .star-micro { font-size: clamp(0.07rem, 0.3vw, 0.12rem); }
-        .star-medium { font-size: clamp(0.18rem, 0.6vw, 0.3rem); }
-
-        /* ========== ТУМАН И ПЫЛЬ ========== */
-        .floor-mist {
-            position: fixed;
-            width: clamp(12rem, 75vw, 50rem);
-            height: clamp(2.5rem, 20vh, 12.5rem);
-            background: radial-gradient(ellipse, rgba(230, 57, 70, 0.06) 0%, transparent 60%);
-            bottom: 0;
-            left: 12%;
-            z-index: 3;
-            pointer-events: none;
-            filter: blur(clamp(1.2rem, 5vw, 3rem));
-            -webkit-filter: blur(clamp(1.2rem, 5vw, 3rem));
-            animation: mistFloat 12s infinite alternate;
-        }
-
-        .dust {
-            position: fixed;
-            width: clamp(0.06rem, 0.2vw, 0.1rem);
-            height: clamp(0.06rem, 0.2vw, 0.1rem);
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            z-index: 3;
-            pointer-events: none;
-            box-shadow: 0 0 clamp(0.15rem, 0.5vw, 0.25rem) rgba(255, 255, 255, 0.3);
-            animation: dustFloat 10s infinite alternate ease-in-out;
-            will-change: transform, opacity;
-        }
-
-        /* ========== ВИНЬЕТКА И ШУМ ========== */
-        .vignette-deep {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            height: 100dvh;
-            background: radial-gradient(ellipse at center, transparent 25%, rgba(10, 5, 6, 0.8) 70%, rgba(10, 5, 6, 0.95) 100%);
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        .noise-texture {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            height: 100dvh;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-            background-size: clamp(6rem, 15vw, 10.6rem) clamp(6rem, 15vw, 10.6rem);
-            opacity: 0.05;
-            z-index: 6;
-            pointer-events: none;
-            mix-blend-mode: overlay;
-        }
-
-        /* ========== АНИМАЦИИ ========== */
-        @keyframes shadowBreath {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-            100% { transform: translate(clamp(0.6rem, 3vw, 2rem), clamp(0.4rem, 2vw, 1.25rem)) scale(1.1); opacity: 1; }
-        }
-
-        @keyframes glowPulse {
-            0% { opacity: 0.5; transform: scale(1); }
-            100% { opacity: 0.9; transform: scale(1.2); }
-        }
-
-        @keyframes shaftFade {
-            0% { opacity: 0.08; filter: blur(0.25rem); }
-            100% { opacity: 0.3; filter: blur(0.1rem); }
-        }
-
-        @keyframes gridPulse1 {
-            0% { opacity: 0.6; transform: translate(0, 0); }
-            100% { opacity: 0.85; transform: translate(clamp(-0.2rem, -1vw, -0.6rem), clamp(0.2rem, 1vw, 0.6rem)); }
-        }
-
-        @keyframes gridPulseSide {
-            0% { opacity: 0.35; transform: translate(0, 0); }
-            100% { opacity: 0.6; transform: translate(clamp(0.1rem, 0.5vw, 0.3rem), clamp(-0.1rem, -0.5vw, -0.3rem)); }
-        }
-
-        @keyframes frameFloat1 {
-            0% { transform: translateX(-50%) translateY(0); }
-            100% { transform: translateX(-50%) translateY(clamp(-0.06rem, -0.3vw, -0.2rem)); }
-        }
-
-        @keyframes frameFloat2 {
-            0% { transform: translateX(-50%) translateY(0); }
-            100% { transform: translateX(-50%) translateY(clamp(-0.04rem, -0.2vw, -0.13rem)); }
-        }
-
-        @keyframes frameFloat3 {
-            0% { transform: translateX(-50%) translateY(0); }
-            100% { transform: translateX(-50%) translateY(clamp(-0.09rem, -0.4vw, -0.25rem)); }
-        }
-
-        @keyframes mistFloat {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
-            100% { transform: translate(clamp(0.6rem, 3vw, 2rem), clamp(-0.2rem, -1vw, -0.6rem)) scale(1.1); opacity: 0.8; }
-        }
-
-        @keyframes dustFloat {
-            0% { transform: translate(0, 0); opacity: 0.3; }
-            100% { transform: translate(clamp(0.3rem, 1vw, 0.75rem), clamp(-0.5rem, -2vw, -1.25rem)); opacity: 0.7; }
-        }
-
-        @keyframes starDriftDown {
-            0% { transform: translateY(-5vh) translateX(0); opacity: 0; }
+        @keyframes starFall {
+            0% { transform: translateY(-5vh); opacity: 0; }
             10% { opacity: 0.4; }
             50% { opacity: 0.3; }
             90% { opacity: 0.2; }
-            100% { transform: translateY(105vh) translateX(15px); opacity: 0; }
+            100% { transform: translateY(105vh); opacity: 0; }
         }
 
-        @keyframes photoGlowPulse {
-            0% { opacity: 0.7; transform: translateY(-50%) scale(1); }
-            100% { opacity: 1; transform: translateY(-50%) scale(1.1); }
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, transparent 25%, rgba(10,5,6,0.8) 70%, rgba(10,5,6,0.95) 100%);
+            z-index: 5;
         }
 
-        /* ========== МЕДИА-ЗАПРОСЫ ========== */
-        /* Маленькие телефоны */
+        /* Для маленьких экранов */
         @media (max-width: 480px) {
-            .frame {
-                width: clamp(10rem, 90vw, 24rem);
-                height: clamp(3.5rem, 16vh, 6rem);
-                border-radius: clamp(0.5rem, 2vw, 1.2rem);
-            }
-            .frame-1 {
-                height: clamp(6rem, 30vh, 11rem);
-            }
-            .frame-2 { top: 30%; }
-            .frame-3 { top: 48%; }
-            .frame-4 { top: 66%; }
-            .frame-subtitle {
-                max-width: clamp(4.5rem, 45vw, 10rem);
-                font-size: clamp(0.5rem, 2.2vw, 0.75rem);
-                line-height: 1.4;
-            }
-            .frame-title {
-                font-size: clamp(0.55rem, 3.5vw, 0.9rem);
-            }
-            .frame-divider {
-                top: clamp(1.2rem, 7vh, 2.8rem);
-                width: clamp(3.5rem, 40vw, 9rem);
-            }
-            .frame-photo {
-                width: clamp(30%, 40%, 40%);
-                height: clamp(50%, 70%, 70%);
-            }
-            .photo-glow {
-                width: clamp(32%, 42%, 42%);
-                height: clamp(55%, 75%, 75%);
-            }
-            .grid-top-right {
-                width: clamp(4rem, 30vw, 12rem);
-                height: clamp(4rem, 30vw, 12rem);
-            }
-            .grid-left,
-            .grid-right {
-                width: clamp(2.5rem, 18vw, 5rem);
-                height: clamp(2.5rem, 18vw, 5rem);
-            }
-            .star-tiny { font-size: clamp(0.08rem, 0.8vw, 0.15rem); }
-            .star-small { font-size: clamp(0.1rem, 1vw, 0.2rem); }
-            .star-micro { font-size: clamp(0.05rem, 0.5vw, 0.1rem); }
-            .star-medium { font-size: clamp(0.12rem, 1.2vw, 0.22rem); }
+            .frame-1 { height: 200px; }
+            .frame-1, .frame-2, .frame-3, .frame-4 { border-radius: 20px; }
+            .title { font-size: 18px; top: 15px; left: 15px; }
+            .divider { top: 65px; left: 15px; width: 160px; height: 3px; }
+            .inner-frame { top: 80px; left: 12px; width: 180px; height: 110px; border-radius: 20px; }
+            .subtitle { top: 88px; left: 22px; font-size: 12px; max-width: 150px; letter-spacing: 0.5px; }
+            .photo { width: 45%; height: 75%; border-radius: 15px; }
+            .photo-glow { width: 48%; height: 80%; }
+            .grid-1 { top: 20px; right: 20px; width: 150px; height: 150px; background-size: 25px 25px; }
+            .grid-2 { top: 50%; left: 10px; width: 80px; height: 80px; background-size: 15px 15px; }
+            .grid-3 { top: 12%; right: 10px; width: 80px; height: 80px; background-size: 15px 15px; }
         }
 
-        /* Большие телефоны */
         @media (min-width: 481px) and (max-width: 768px) {
-            .frame {
-                width: clamp(14rem, 50vw, 26rem);
-                height: clamp(4rem, 17vh, 7rem);
-            }
-            .frame-1 {
-                height: clamp(7rem, 32vh, 13rem);
-            }
-            .frame-2 { top: 31%; }
-            .frame-3 { top: 47%; }
-            .frame-4 { top: 63%; }
-            .frame-subtitle {
-                max-width: clamp(5rem, 25vw, 12rem);
-            }
-            .frame-title {
-                font-size: clamp(0.65rem, 2.5vw, 1.1rem);
-            }
-            .grid-top-right {
-                width: clamp(6rem, 35vw, 18rem);
-                height: clamp(6rem, 35vw, 18rem);
-            }
-        }
-
-        /* Планшеты */
-        @media (min-width: 769px) {
-            .frame {
-                width: clamp(18rem, 35vw, 26rem);
-                height: clamp(5rem, 15vh, 8rem);
-            }
-            .frame-1 {
-                height: clamp(10rem, 30vh, 17rem);
-            }
-            .frame-2 { top: 32%; }
-            .frame-3 { top: 48%; }
-            .frame-4 { top: 64%; }
-            .grid-top-right {
-                width: clamp(12rem, 30vw, 30rem);
-                height: clamp(12rem, 30vw, 30rem);
-            }
-        }
-
-        /* Горизонтальная ориентация */
-        @media (orientation: landscape) {
-            .frame {
-                width: clamp(14rem, 35vw, 24rem);
-                height: clamp(3rem, 20vh, 5.5rem);
-            }
-            .frame-1 {
-                height: clamp(5rem, 40vh, 9rem);
-            }
-            .frame-2 { top: 25%; }
-            .frame-3 { top: 42%; }
-            .frame-4 { top: 59%; }
-            .frame-subtitle {
-                font-size: clamp(0.5rem, 1.8vw, 0.8rem);
-                line-height: 1.3;
-            }
-            .grid-top-right {
-                width: clamp(5rem, 25vw, 18rem);
-                height: clamp(5rem, 25vw, 18rem);
-            }
-        }
-
-        /* Вертикальная ориентация */
-        @media (orientation: portrait) {
-            .frame {
-                width: clamp(12rem, 85vw, 26rem);
-            }
-        }
-
-        /* Поддержка тёмной темы */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #080304;
-            }
-        }
-
-        /* Уменьшенная анимация */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
+            .frame-1 { height: 240px; }
+            .title { font-size: 22px; }
+            .divider { width: 190px; }
+            .inner-frame { width: 200px; }
+            .grid-1 { width: 200px; height: 200px; }
         }
     </style>
 </head>
 <body>
-    <!-- Базовые слои -->
     <div class="room-base"></div>
+    <div class="shadow shadow-1"></div>
+    <div class="shadow shadow-2"></div>
+    <div class="shadow shadow-3"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+    <div class="glow glow-4"></div>
+    <div class="grid grid-1"></div>
+    <div class="grid grid-2"></div>
+    <div class="grid grid-3"></div>
 
-    <!-- Тени -->
-    <div class="room-shadow shadow-main"></div>
-    <div class="room-shadow shadow-side-left"></div>
-    <div class="room-shadow shadow-side-right"></div>
-
-    <!-- Свечение -->
-    <div class="red-glow glow-center"></div>
-    <div class="red-glow glow-deep"></div>
-    <div class="red-glow glow-soft"></div>
-    <div class="red-glow glow-floor"></div>
-
-    <!-- Лучи -->
-    <div class="light-shaft shaft-1"></div>
-    <div class="light-shaft shaft-2"></div>
-
-    <!-- Сетки -->
-    <div class="grid-top-right"></div>
-    <div class="grid-left"></div>
-    <div class="grid-right"></div>
-
-    <!-- Туман -->
-    <div class="floor-mist"></div>
-
-    <!-- Пыль -->
-    <div class="dust" style="top: 18%; left: 28%; animation-delay: 0s;"></div>
-    <div class="dust" style="top: 32%; left: 72%; animation-delay: 0.8s;"></div>
-    <div class="dust" style="top: 48%; left: 12%; animation-delay: 1.6s;"></div>
-    <div class="dust" style="top: 62%; left: 82%; animation-delay: 2.3s;"></div>
-    <div class="dust" style="top: 38%; left: 42%; animation-delay: 0.4s;"></div>
-    <div class="dust" style="top: 72%; left: 55%; animation-delay: 1.2s;"></div>
-    <div class="dust" style="top: 22%; left: 88%; animation-delay: 2s;"></div>
-    <div class="dust" style="top: 55%; left: 32%; animation-delay: 0.6s;"></div>
-    <div class="dust" style="top: 82%; left: 18%; animation-delay: 1.4s;"></div>
-    <div class="dust" style="top: 12%; left: 62%; animation-delay: 2.7s;"></div>
-
-    <!-- Рамки -->
     <div class="frame frame-1">
-        <div class="frame-title">Викладач англійської</div>
-        <div class="frame-divider"></div>
-        <div class="frame-inner"></div>
-        <div class="frame-subtitle">Мене звати Олексій, мені 19 років. Викладаю англійську онлайн вже понад 3 роки.</div>
+        <div class="title">Викладач англійської</div>
+        <div class="divider"></div>
+        <div class="inner-frame"></div>
+        <div class="subtitle">Мене звати Олексій, мені 19 років. Викладаю англійську онлайн вже понад 3 роки.</div>
         <div class="photo-glow"></div>
-        <img class="frame-photo" src="https://i.postimg.cc/SsmHrJGk/file-00000000e5d081f49bc9e7c6512b4e6e.png" alt="Фото">
+        <img class="photo" src="https://i.postimg.cc/SsmHrJGk/file-00000000e5d081f49bc9e7c6512b4e6e.png" alt="Фото">
     </div>
+
     <div class="frame frame-2"><div class="plus">+</div></div>
     <div class="frame frame-3"><div class="plus">+</div></div>
     <div class="frame frame-4"><div class="plus">+</div></div>
 
-    <!-- Звёзды -->
-    <div class="star star-tiny" style="left: 3%; animation-duration: 22s; animation-delay: 0s;">✦</div>
-    <div class="star star-small" style="left: 7%; animation-duration: 25s; animation-delay: 1s;">✧</div>
-    <div class="star star-micro" style="left: 11%; animation-duration: 18s; animation-delay: 2s;">✦</div>
-    <div class="star star-tiny" style="left: 15%; animation-duration: 28s; animation-delay: 0.5s;">✧</div>
-    <div class="star star-small" style="left: 19%; animation-duration: 20s; animation-delay: 1.5s;">✦</div>
-    <div class="star star-micro" style="left: 23%; animation-duration: 24s; animation-delay: 3s;">✧</div>
-    <div class="star star-tiny" style="left: 27%; animation-duration: 21s; animation-delay: 0.8s;">✦</div>
-    <div class="star star-small" style="left: 31%; animation-duration: 26s; animation-delay: 2.2s;">✧</div>
-    <div class="star star-micro" style="left: 35%; animation-duration: 19s; animation-delay: 1.2s;">✦</div>
-    <div class="star star-tiny" style="left: 39%; animation-duration: 23s; animation-delay: 3.5s;">✧</div>
-    <div class="star star-small" style="left: 43%; animation-duration: 27s; animation-delay: 0.3s;">✦</div>
-    <div class="star star-micro" style="left: 47%; animation-duration: 17s; animation-delay: 2.8s;">✧</div>
-    <div class="star star-tiny" style="left: 51%; animation-duration: 29s; animation-delay: 1.8s;">✦</div>
-    <div class="star star-small" style="left: 55%; animation-duration: 22s; animation-delay: 0.6s;">✧</div>
-    <div class="star star-micro" style="left: 59%; animation-duration: 25s; animation-delay: 2.5s;">✦</div>
-    <div class="star star-tiny" style="left: 63%; animation-duration: 20s; animation-delay: 1.1s;">✧</div>
-    <div class="star star-small" style="left: 67%; animation-duration: 24s; animation-delay: 3.2s;">✦</div>
-    <div class="star star-micro" style="left: 71%; animation-duration: 18s; animation-delay: 0.9s;">✧</div>
-    <div class="star star-tiny" style="left: 75%; animation-duration: 26s; animation-delay: 2.1s;">✦</div>
-    <div class="star star-small" style="left: 79%; animation-duration: 21s; animation-delay: 1.6s;">✧</div>
-    <div class="star star-micro" style="left: 83%; animation-duration: 23s; animation-delay: 0.4s;">✦</div>
-    <div class="star star-tiny" style="left: 87%; animation-duration: 28s; animation-delay: 2.7s;">✧</div>
-    <div class="star star-small" style="left: 91%; animation-duration: 19s; animation-delay: 1.3s;">✦</div>
-    <div class="star star-micro" style="left: 95%; animation-duration: 25s; animation-delay: 3.7s;">✧</div>
+    <div class="star" style="left: 3%; font-size: 3px; animation-duration: 22s;">✦</div>
+    <div class="star" style="left: 7%; font-size: 4px; animation-duration: 25s; animation-delay: 1s;">✧</div>
+    <div class="star" style="left: 11%; font-size: 2px; animation-duration: 18s; animation-delay: 2s;">✦</div>
+    <div class="star" style="left: 15%; font-size: 3px; animation-duration: 28s; animation-delay: 0.5s;">✧</div>
+    <div class="star" style="left: 19%; font-size: 4px; animation-duration: 20s; animation-delay: 1.5s;">✦</div>
+    <div class="star" style="left: 23%; font-size: 2px; animation-duration: 24s; animation-delay: 3s;">✧</div>
+    <div class="star" style="left: 27%; font-size: 3px; animation-duration: 21s; animation-delay: 0.8s;">✦</div>
+    <div class="star" style="left: 31%; font-size: 4px; animation-duration: 26s; animation-delay: 2.2s;">✧</div>
+    <div class="star" style="left: 35%; font-size: 2px; animation-duration: 19s; animation-delay: 1.2s;">✦</div>
+    <div class="star" style="left: 39%; font-size: 3px; animation-duration: 23s; animation-delay: 3.5s;">✧</div>
+    <div class="star" style="left: 43%; font-size: 4px; animation-duration: 27s; animation-delay: 0.3s;">✦</div>
+    <div class="star" style="left: 47%; font-size: 2px; animation-duration: 17s; animation-delay: 2.8s;">✧</div>
+    <div class="star" style="left: 51%; font-size: 3px; animation-duration: 29s; animation-delay: 1.8s;">✦</div>
+    <div class="star" style="left: 55%; font-size: 4px; animation-duration: 22s; animation-delay: 0.6s;">✧</div>
+    <div class="star" style="left: 59%; font-size: 2px; animation-duration: 25s; animation-delay: 2.5s;">✦</div>
+    <div class="star" style="left: 63%; font-size: 3px; animation-duration: 20s; animation-delay: 1.1s;">✧</div>
+    <div class="star" style="left: 67%; font-size: 4px; animation-duration: 24s; animation-delay: 3.2s;">✦</div>
+    <div class="star" style="left: 71%; font-size: 2px; animation-duration: 18s; animation-delay: 0.9s;">✧</div>
+    <div class="star" style="left: 75%; font-size: 3px; animation-duration: 26s; animation-delay: 2.1s;">✦</div>
+    <div class="star" style="left: 79%; font-size: 4px; animation-duration: 21s; animation-delay: 1.6s;">✧</div>
+    <div class="star" style="left: 83%; font-size: 2px; animation-duration: 23s; animation-delay: 0.4s;">✦</div>
+    <div class="star" style="left: 87%; font-size: 3px; animation-duration: 28s; animation-delay: 2.7s;">✧</div>
+    <div class="star" style="left: 91%; font-size: 4px; animation-duration: 19s; animation-delay: 1.3s;">✦</div>
+    <div class="star" style="left: 95%; font-size: 2px; animation-duration: 25s; animation-delay: 3.7s;">✧</div>
 
-    <div class="star star-small" style="left: 5%; animation-duration: 24s; animation-delay: 4s;">✦</div>
-    <div class="star star-tiny" style="left: 13%; animation-duration: 27s; animation-delay: 5s;">✧</div>
-    <div class="star star-micro" style="left: 21%; animation-duration: 20s; animation-delay: 6s;">✦</div>
-    <div class="star star-small" style="left: 29%; animation-duration: 23s; animation-delay: 7s;">✧</div>
-    <div class="star star-tiny" style="left: 37%; animation-duration: 26s; animation-delay: 8s;">✦</div>
-    <div class="star star-micro" style="left: 45%; animation-duration: 18s; animation-delay: 9s;">✧</div>
-    <div class="star star-small" style="left: 53%; animation-duration: 22s; animation-delay: 10s;">✦</div>
-    <div class="star star-tiny" style="left: 61%; animation-duration: 28s; animation-delay: 11s;">✧</div>
-    <div class="star star-micro" style="left: 69%; animation-duration: 21s; animation-delay: 12s;">✦</div>
-    <div class="star star-small" style="left: 77%; animation-duration: 25s; animation-delay: 13s;">✧</div>
-    <div class="star star-tiny" style="left: 85%; animation-duration: 19s; animation-delay: 14s;">✦</div>
-    <div class="star star-micro" style="left: 93%; animation-duration: 24s; animation-delay: 15s;">✧</div>
-
-    <!-- Виньетка и шум -->
-    <div class="vignette-deep"></div>
-    <div class="noise-texture"></div>
+    <div class="vignette"></div>
 </body>
 </html>
