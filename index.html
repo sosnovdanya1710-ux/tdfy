@@ -233,6 +233,22 @@
             100% { opacity: 1; }
         }
 
+        /* Заголовок слева от фото — тёмно-красный, прозрачный */
+        .title-left {
+            position: absolute;
+            top: 30px;
+            left: 25px;
+            z-index: 11;
+            font-size: 28px;
+            font-weight: 900;
+            color: rgba(140, 20, 30, 0.7);
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 12px rgba(140, 20, 30, 0.4), 0 0 25px rgba(140, 20, 30, 0.2);
+            text-transform: uppercase;
+            max-width: 45%;
+            line-height: 1.2;
+        }
+
         /* Разделительная линия */
         .divider-line {
             width: 85%;
@@ -311,6 +327,13 @@
                 height: 90%;
                 right: 0;
             }
+            .title-left {
+                top: 20px;
+                left: 15px;
+                font-size: 18px;
+                letter-spacing: 0.8px;
+                max-width: 42%;
+            }
             .divider-line {
                 width: 80%;
             }
@@ -333,6 +356,7 @@
         <div class="frame frame-main">
             <div class="photo-glow"></div>
             <img class="photo" src="https://i.postimg.cc/SsmHrJGk/file-00000000e5d081f49bc9e7c6512b4e6e.png" alt="Фото">
+            <div class="title-left">Викладач Англійської</div>
         </div>
 
         <div class="divider-line"></div>
