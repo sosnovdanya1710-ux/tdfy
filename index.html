@@ -2,7 +2,9 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
     <title>Фон — Красная комната</title>
     <style>
         * {
@@ -11,15 +13,22 @@
             box-sizing: border-box;
         }
 
+        html {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
         body {
             background-color: #0a0506;
             width: 100%;
             min-height: 100vh;
             overflow-x: hidden;
-            overflow-y: scroll;
+            overflow-y: auto;
             position: relative;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             -webkit-overflow-scrolling: touch;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .room-base {
@@ -28,11 +37,22 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: 
-                radial-gradient(ellipse at 50% 40%, rgba(45, 8, 12, 0.8) 0%, transparent 60%),
-                radial-gradient(ellipse at 15% 85%, rgba(35, 5, 8, 0.9) 0%, transparent 50%),
-                radial-gradient(ellipse at 85% 15%, rgba(28, 4, 7, 0.7) 0%, transparent 45%),
-                linear-gradient(180deg, #0d0405 0%, #1a0709 20%, #22090c 40%, #160607 60%, #0b0304 80%, #090203 100%);
+            background-color: #0a0506;
+            background-image: 
+                radial-gradient(ellipse at 50% 40%, rgba(45, 8, 12, 0.8) 0%, rgba(45, 8, 12, 0) 60%),
+                radial-gradient(ellipse at 15% 85%, rgba(35, 5, 8, 0.9) 0%, rgba(35, 5, 8, 0) 50%),
+                radial-gradient(ellipse at 85% 15%, rgba(28, 4, 7, 0.7) 0%, rgba(28, 4, 7, 0) 45%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .room-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(180deg, #0d0405 0%, #1a0709 20%, #22090c 40%, #160607 60%, #0b0304 80%, #090203 100%);
             z-index: 0;
             pointer-events: none;
         }
@@ -40,39 +60,44 @@
         .shadow {
             position: fixed;
             border-radius: 50%;
-            filter: blur(80px);
             z-index: 1;
             pointer-events: none;
+            opacity: 0.7;
         }
 
         .shadow-1 {
             width: 80vw;
             height: 60vh;
-            background: radial-gradient(ellipse, rgba(0,0,0,0.9) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 70%);
             top: 30%;
             left: 10%;
+            -webkit-filter: blur(50px);
+            filter: blur(50px);
         }
 
         .shadow-2 {
             width: 45vw;
             height: 85vh;
-            background: radial-gradient(ellipse, rgba(0,0,0,0.85) 0%, transparent 65%);
+            background: radial-gradient(ellipse, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 65%);
             top: 8%;
             left: -18%;
+            -webkit-filter: blur(50px);
+            filter: blur(50px);
         }
 
         .shadow-3 {
             width: 40vw;
             height: 75vh;
-            background: radial-gradient(ellipse, rgba(0,0,0,0.75) 0%, transparent 60%);
+            background: radial-gradient(ellipse, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 60%);
             top: 18%;
             right: -12%;
+            -webkit-filter: blur(50px);
+            filter: blur(50px);
         }
 
         .glow {
             position: fixed;
             border-radius: 50%;
-            filter: blur(100px);
             z-index: 2;
             pointer-events: none;
         }
@@ -80,76 +105,57 @@
         .glow-1 {
             width: 55vw;
             height: 55vw;
-            background: radial-gradient(circle, rgba(230, 57, 70, 0.22) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.22) 0%, rgba(230, 57, 70, 0) 70%);
             top: 28%;
             left: 22%;
+            -webkit-filter: blur(60px);
+            filter: blur(60px);
         }
 
         .glow-2 {
             width: 45vw;
             height: 45vw;
-            background: radial-gradient(circle, rgba(155, 28, 40, 0.28) 0%, transparent 65%);
+            background: radial-gradient(circle, rgba(155, 28, 40, 0.28) 0%, rgba(155, 28, 40, 0) 65%);
             bottom: 8%;
             right: 12%;
+            -webkit-filter: blur(60px);
+            filter: blur(60px);
         }
 
         .glow-3 {
             width: 38vw;
             height: 38vw;
-            background: radial-gradient(circle, rgba(255, 77, 90, 0.18) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 77, 90, 0.18) 0%, rgba(255, 77, 90, 0) 70%);
             top: 8%;
             left: 48%;
+            -webkit-filter: blur(60px);
+            filter: blur(60px);
         }
 
         .glow-4 {
             width: 65vw;
             height: 25vh;
-            background: radial-gradient(ellipse, rgba(230, 57, 70, 0.2) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(230, 57, 70, 0.2) 0%, rgba(230, 57, 70, 0) 70%);
             bottom: -5%;
             left: 18%;
+            -webkit-filter: blur(60px);
+            filter: blur(60px);
         }
 
-        .grid {
+        /* ОДНА БОЛЬШАЯ СЕТКА НА ВЕСЬ ЭКРАН — ЧУТЬ ПРОЗРАЧНЕЕ */
+        .grid-full {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
             z-index: 3;
-            opacity: 0.5;
             pointer-events: none;
-        }
-
-        .grid-1 {
-            top: 40px;
-            right: 40px;
-            width: 300px;
-            height: 300px;
             background-image: 
-                linear-gradient(rgba(255,255,255,0.16) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.16) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.7;
-        }
-
-        .grid-2 {
-            top: 55%;
-            left: 20px;
-            width: 150px;
-            height: 150px;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
-            background-size: 25px 25px;
-            opacity: 0.5;
-        }
-
-        .grid-3 {
-            top: 15%;
-            right: 20px;
-            width: 150px;
-            height: 150px;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px);
-            background-size: 25px 25px;
-            opacity: 0.5;
+                linear-gradient(rgba(255,255,255,0.05) 1.5px, transparent 1.5px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1.5px, transparent 1.5px);
+            background-size: clamp(30px, 5vw, 50px) clamp(30px, 5vw, 50px);
+            opacity: 0.4;
         }
 
         .content {
@@ -188,12 +194,14 @@
             position: absolute;
             right: 0;
             top: 50%;
+            -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
             width: 42%;
             height: 80%;
             border-radius: 20px;
             object-fit: cover;
             opacity: 0.8;
+            -webkit-filter: grayscale(30%) contrast(1.1) brightness(0.9);
             filter: grayscale(30%) contrast(1.1) brightness(0.9);
             z-index: 10;
         }
@@ -202,64 +210,15 @@
             position: absolute;
             right: 0;
             top: 50%;
+            -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
             width: 45%;
             height: 85%;
             border-radius: 25px;
-            background: radial-gradient(ellipse, rgba(230,57,70,0.5) 0%, rgba(230,57,70,0.25) 40%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(230,57,70,0.5) 0%, rgba(230,57,70,0.25) 40%, rgba(230,57,70,0) 70%);
+            -webkit-filter: blur(40px);
             filter: blur(40px);
             z-index: 9;
-        }
-
-        .title {
-            position: absolute;
-            top: 20px;
-            left: 25px;
-            z-index: 9;
-            font-size: 26px;
-            font-weight: 900;
-            color: rgba(180, 30, 40, 0.8);
-            letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(180,30,40,0.4), 0 0 20px rgba(180,30,40,0.2);
-            text-transform: uppercase;
-        }
-
-        .divider {
-            position: absolute;
-            top: 95px;
-            left: 25px;
-            width: 220px;
-            height: 4px;
-            background: linear-gradient(90deg, rgba(230,57,70,0.7) 0%, rgba(230,57,70,0.2) 100%);
-            border-radius: 2px;
-            box-shadow: 0 0 10px rgba(230,57,70,0.3);
-            z-index: 9;
-        }
-
-        .inner-frame {
-            position: absolute;
-            top: 115px;
-            left: 20px;
-            width: 230px;
-            height: 150px;
-            border: 1.5px solid rgba(255,255,255,0.18);
-            border-radius: 30px;
-            background: rgba(255,255,255,0.02);
-            box-shadow: 0 0 30px rgba(255,255,255,0.06), inset 0 0 30px rgba(255,255,255,0.04);
-            z-index: 8;
-        }
-
-        .subtitle {
-            position: absolute;
-            top: 125px;
-            left: 32px;
-            z-index: 9;
-            font-size: 15px;
-            font-weight: 900;
-            color: rgba(160,160,168,0.6);
-            letter-spacing: 1px;
-            max-width: 190px;
-            line-height: 1.5;
         }
 
         .plus {
@@ -319,33 +278,6 @@
                 height: 110px;
                 border-radius: 20px;
             }
-            .title {
-                font-size: 20px;
-                top: 15px;
-                left: 15px;
-                letter-spacing: 0.5px;
-            }
-            .divider {
-                top: 70px;
-                left: 15px;
-                width: 180px;
-                height: 3px;
-            }
-            .inner-frame {
-                top: 85px;
-                left: 12px;
-                width: 200px;
-                height: 120px;
-                border-radius: 20px;
-            }
-            .subtitle {
-                top: 95px;
-                left: 22px;
-                font-size: 13px;
-                max-width: 170px;
-                letter-spacing: 0.5px;
-                line-height: 1.4;
-            }
             .photo {
                 width: 45%;
                 height: 75%;
@@ -355,32 +287,12 @@
                 width: 48%;
                 height: 80%;
             }
-            .grid-1 {
-                top: 20px;
-                right: 20px;
-                width: 150px;
-                height: 150px;
-                background-size: 25px 25px;
-            }
-            .grid-2 {
-                top: 50%;
-                left: 10px;
-                width: 80px;
-                height: 80px;
-                background-size: 15px 15px;
-            }
-            .grid-3 {
-                top: 12%;
-                right: 10px;
-                width: 80px;
-                height: 80px;
-                background-size: 15px 15px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="room-base"></div>
+    <div class="room-gradient"></div>
     <div class="shadow shadow-1"></div>
     <div class="shadow shadow-2"></div>
     <div class="shadow shadow-3"></div>
@@ -388,16 +300,10 @@
     <div class="glow glow-2"></div>
     <div class="glow glow-3"></div>
     <div class="glow glow-4"></div>
-    <div class="grid grid-1"></div>
-    <div class="grid grid-2"></div>
-    <div class="grid grid-3"></div>
+    <div class="grid-full"></div>
 
     <div class="content">
         <div class="frame frame-main">
-            <div class="title">Викладач англійської</div>
-            <div class="divider"></div>
-            <div class="inner-frame"></div>
-            <div class="subtitle">Мене звати Олексій, мені 19 років. Викладаю англійську онлайн вже понад 3 роки.</div>
             <div class="photo-glow"></div>
             <img class="photo" src="https://i.postimg.cc/SsmHrJGk/file-00000000e5d081f49bc9e7c6512b4e6e.png" alt="Фото">
         </div>
