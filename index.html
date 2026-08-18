@@ -194,7 +194,7 @@
             height: 130px;
         }
 
-        /* Фото чуть поменьше */
+        /* Фото — object-fit: contain чтобы не обрезалось */
         .photo {
             position: absolute;
             right: 10px;
@@ -204,7 +204,7 @@
             width: 48%;
             height: 80%;
             border-radius: 20px;
-            object-fit: cover;
+            object-fit: contain;
             opacity: 0.85;
             -webkit-filter: grayscale(20%) contrast(1.05) brightness(0.95);
             filter: grayscale(20%) contrast(1.05) brightness(0.95);
@@ -302,13 +302,13 @@
             }
             .photo {
                 width: 50%;
-                height: 75%;
+                height: 85%;
                 border-radius: 15px;
                 right: 5px;
             }
             .photo-glow {
                 width: 54%;
-                height: 80%;
+                height: 90%;
                 right: 0;
             }
             .divider-line {
@@ -335,10 +335,8 @@
             <img class="photo" src="https://i.postimg.cc/SsmHrJGk/file-00000000e5d081f49bc9e7c6512b4e6e.png" alt="Фото">
         </div>
 
-        <!-- Разделительная линия -->
         <div class="divider-line"></div>
 
-        <!-- 3 одинаковые рамки -->
         <div class="frame frame-small"><div class="plus">+</div></div>
         <div class="frame frame-small"><div class="plus">+</div></div>
         <div class="frame frame-small"><div class="plus">+</div></div>
