@@ -142,7 +142,7 @@
             filter: blur(60px);
         }
 
-        /* ОДНА БОЛЬШАЯ СЕТКА НА ВЕСЬ ЭКРАН — ЧУТЬ ПРОЗРАЧНЕЕ */
+        /* Сетка на весь экран */
         .grid-full {
             position: fixed;
             top: 0;
@@ -170,12 +170,16 @@
             justify-content: flex-start;
         }
 
+        /* Рамки с блюром */
         .frame {
             position: relative;
             border: 1.5px solid rgba(255,255,255,0.18);
             border-radius: 30px;
             box-shadow: 0 0 30px rgba(255,255,255,0.06), inset 0 0 30px rgba(255,255,255,0.04);
             background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            -moz-backdrop-filter: blur(10px);
             width: 100%;
             max-width: 420px;
             flex-shrink: 0;
@@ -190,35 +194,43 @@
             height: 130px;
         }
 
+        /* Фото больше */
         .photo {
             position: absolute;
             right: 0;
             top: 50%;
             -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
-            width: 42%;
-            height: 80%;
+            width: 55%;
+            height: 90%;
             border-radius: 20px;
             object-fit: cover;
-            opacity: 0.8;
-            -webkit-filter: grayscale(30%) contrast(1.1) brightness(0.9);
-            filter: grayscale(30%) contrast(1.1) brightness(0.9);
+            opacity: 0.85;
+            -webkit-filter: grayscale(20%) contrast(1.05) brightness(0.95);
+            filter: grayscale(20%) contrast(1.05) brightness(0.95);
             z-index: 10;
         }
 
+        /* Красный неон за фото */
         .photo-glow {
             position: absolute;
             right: 0;
             top: 50%;
             -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
-            width: 45%;
-            height: 85%;
+            width: 58%;
+            height: 95%;
             border-radius: 25px;
-            background: radial-gradient(ellipse, rgba(230,57,70,0.5) 0%, rgba(230,57,70,0.25) 40%, rgba(230,57,70,0) 70%);
-            -webkit-filter: blur(40px);
-            filter: blur(40px);
+            background: radial-gradient(ellipse, rgba(230,57,70,0.65) 0%, rgba(230,57,70,0.35) 40%, rgba(230,57,70,0.1) 70%, rgba(230,57,70,0) 100%);
+            -webkit-filter: blur(35px);
+            filter: blur(35px);
             z-index: 9;
+            animation: neonPulse 2.5s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
         }
 
         .plus {
@@ -279,13 +291,13 @@
                 border-radius: 20px;
             }
             .photo {
-                width: 45%;
-                height: 75%;
+                width: 58%;
+                height: 88%;
                 border-radius: 15px;
             }
             .photo-glow {
-                width: 48%;
-                height: 80%;
+                width: 62%;
+                height: 92%;
             }
         }
     </style>
