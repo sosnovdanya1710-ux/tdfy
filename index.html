@@ -193,6 +193,7 @@
         .frame-small {
             height: 130px;
             position: relative;
+            overflow: hidden;
         }
 
         /* Фото */
@@ -326,7 +327,7 @@
             background: rgba(255, 255, 255, 0.18);
         }
 
-        /* Заголовки в малых рамках — меньше и прозрачнее */
+        /* Заголовки в малых рамках */
         .second-title,
         .third-title,
         .fourth-title {
@@ -353,6 +354,18 @@
         .fourth-white {
             color: rgba(235, 235, 240, 0.45);
             text-shadow: 0 0 4px rgba(235, 235, 240, 0.1);
+        }
+
+        /* Вертикальная линия — КАК ОБВОДКА РАМКИ */
+        .vertical-line {
+            position: absolute;
+            left: 68%;
+            top: 0;
+            bottom: 0;
+            width: 1.5px;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 8px rgba(255,255,255,0.04), inset 0 0 8px rgba(255,255,255,0.03);
+            z-index: 8;
         }
 
         /* Разделительная линия */
@@ -451,6 +464,11 @@
                 font-size: 16px;
                 letter-spacing: 0.3px;
             }
+            .vertical-line {
+                left: 65%;
+                width: 1px;
+                box-shadow: 0 0 5px rgba(255,255,255,0.03), inset 0 0 5px rgba(255,255,255,0.02);
+            }
             .divider-line {
                 width: 80%;
             }
@@ -483,6 +501,7 @@
         <div class="divider-line"></div>
 
         <div class="frame frame-small">
+            <div class="vertical-line"></div>
             <div class="second-title">
                 <span class="second-red">Про</span> <span class="second-white">мене</span>
             </div>
