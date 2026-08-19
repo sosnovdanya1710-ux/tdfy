@@ -356,16 +356,51 @@
             text-shadow: 0 0 4px rgba(235, 235, 240, 0.1);
         }
 
-        /* Вертикальная линия — КАК ОБВОДКА РАМКИ */
+        /* Вертикальная линия */
         .vertical-line {
             position: absolute;
-            left: 68%;
+            left: 55%;
             top: 0;
             bottom: 0;
             width: 1.5px;
             background: rgba(255, 255, 255, 0.15);
             box-shadow: 0 0 8px rgba(255,255,255,0.04), inset 0 0 8px rgba(255,255,255,0.03);
             z-index: 8;
+        }
+
+        /* Текст справа от линии */
+        .stats {
+            position: absolute;
+            left: 65%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 11;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .stat-main {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: rgba(235, 235, 240, 0.75);
+            text-shadow: 0 0 6px rgba(235, 235, 240, 0.2);
+            white-space: nowrap;
+        }
+
+        .stat-sub {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: rgba(235, 235, 240, 0.45);
+            white-space: nowrap;
         }
 
         /* Разделительная линия */
@@ -465,9 +500,21 @@
                 letter-spacing: 0.3px;
             }
             .vertical-line {
-                left: 65%;
+                left: 52%;
                 width: 1px;
                 box-shadow: 0 0 5px rgba(255,255,255,0.03), inset 0 0 5px rgba(255,255,255,0.02);
+            }
+            .stats {
+                left: 62%;
+                gap: 12px;
+            }
+            .stat-main {
+                font-size: 18px;
+                letter-spacing: 0.3px;
+            }
+            .stat-sub {
+                font-size: 10px;
+                letter-spacing: 0.2px;
             }
             .divider-line {
                 width: 80%;
@@ -504,6 +551,16 @@
             <div class="vertical-line"></div>
             <div class="second-title">
                 <span class="second-red">Про</span> <span class="second-white">мене</span>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-main">3+ роки</div>
+                    <div class="stat-sub">викладання</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-main">25+ учнів</div>
+                    <div class="stat-sub">навчаю</div>
+                </div>
             </div>
         </div>
 
