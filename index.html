@@ -105,7 +105,7 @@
         .glow-1 {
             width: 55vw;
             height: 55vw;
-            background: radial-gradient(circle, rgba(230, 57, 70, 0.3) 0%, rgba(230, 57, 70, 0) 70%);
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.4) 0%, rgba(230, 57, 70, 0) 70%);
             top: 28%;
             left: 22%;
             -webkit-filter: blur(60px);
@@ -115,7 +115,7 @@
         .glow-2 {
             width: 45vw;
             height: 45vw;
-            background: radial-gradient(circle, rgba(155, 28, 40, 0.35) 0%, rgba(155, 28, 40, 0) 65%);
+            background: radial-gradient(circle, rgba(155, 28, 40, 0.45) 0%, rgba(155, 28, 40, 0) 65%);
             bottom: 8%;
             right: 12%;
             -webkit-filter: blur(60px);
@@ -125,7 +125,7 @@
         .glow-3 {
             width: 38vw;
             height: 38vw;
-            background: radial-gradient(circle, rgba(255, 77, 90, 0.25) 0%, rgba(255, 77, 90, 0) 70%);
+            background: radial-gradient(circle, rgba(255, 77, 90, 0.35) 0%, rgba(255, 77, 90, 0) 70%);
             top: 8%;
             left: 48%;
             -webkit-filter: blur(60px);
@@ -135,7 +135,7 @@
         .glow-4 {
             width: 65vw;
             height: 25vh;
-            background: radial-gradient(ellipse, rgba(230, 57, 70, 0.28) 0%, rgba(230, 57, 70, 0) 70%);
+            background: radial-gradient(ellipse, rgba(230, 57, 70, 0.38) 0%, rgba(230, 57, 70, 0) 70%);
             bottom: -5%;
             left: 18%;
             -webkit-filter: blur(60px);
@@ -212,7 +212,7 @@
             z-index: 10;
         }
 
-        /* Неон */
+        /* Неон за фото */
         .photo-glow {
             position: absolute;
             right: -15px;
@@ -222,26 +222,26 @@
             width: 58%;
             height: 90%;
             border-radius: 25px;
-            background: radial-gradient(ellipse, rgba(230,57,70,0.7) 0%, rgba(230,57,70,0.35) 40%, rgba(230,57,70,0.1) 70%, rgba(230,57,70,0) 100%);
-            -webkit-filter: blur(30px);
-            filter: blur(30px);
+            background: radial-gradient(ellipse, rgba(255, 30, 45, 0.85) 0%, rgba(230, 40, 55, 0.45) 40%, rgba(200, 20, 30, 0.15) 70%, rgba(200, 20, 30, 0) 100%);
+            -webkit-filter: blur(35px);
+            filter: blur(35px);
             z-index: 9;
-            animation: neonPulse 2.5s infinite alternate;
+            animation: neonPulse 2s infinite alternate;
         }
 
         @keyframes neonPulse {
-            0% { opacity: 0.8; }
+            0% { opacity: 0.85; }
             100% { opacity: 1; }
         }
 
-        /* Заголовок большой — ТЁМНО-КРАСНЫЙ */
+        /* Заголовок большой — ТЁМНО-КРАСНЫЙ, ЕЩЁ ТЕМНЕЕ */
         .title-left {
             position: absolute;
             top: 20px;
             left: 25px;
             z-index: 11;
             font-size: 38px;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
             max-width: 45%;
@@ -249,8 +249,8 @@
         }
 
         .title-red {
-            color: #b8121f;
-            text-shadow: 0 0 12px rgba(180, 15, 25, 0.4);
+            color: #8b0a12;
+            text-shadow: 0 0 10px rgba(139, 10, 18, 0.5);
         }
 
         .title-white {
@@ -265,9 +265,9 @@
             left: 25px;
             z-index: 11;
             padding: 16px 50px;
-            border: 1.5px solid rgba(200, 20, 30, 0.6);
+            border: 1.5px solid rgba(200, 15, 25, 0.65);
             border-radius: 30px;
-            background: rgba(200, 20, 30, 0.25);
+            background: rgba(180, 15, 25, 0.3);
             color: rgba(255, 255, 255, 0.85);
             font-size: 18px;
             font-weight: 500;
@@ -275,7 +275,7 @@
             text-transform: uppercase;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            box-shadow: 0 0 25px rgba(200, 20, 30, 0.35), inset 0 0 18px rgba(200, 20, 30, 0.12);
+            box-shadow: 0 0 30px rgba(200, 15, 25, 0.45), inset 0 0 20px rgba(200, 15, 25, 0.15);
             cursor: pointer;
             transition: all 0.3s ease;
             max-width: 45%;
@@ -288,7 +288,7 @@
 
         .btn-red:active {
             transform: scale(0.95);
-            background: rgba(200, 20, 30, 0.32);
+            background: rgba(180, 15, 25, 0.38);
         }
 
         /* Кнопка белая */
@@ -333,7 +333,7 @@
             left: 15px;
             z-index: 11;
             font-size: 24px;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
             line-height: 1.1;
@@ -342,8 +342,8 @@
         .second-red,
         .third-red,
         .fourth-red {
-            color: #b8121f;
-            text-shadow: 0 0 12px rgba(180, 15, 25, 0.4);
+            color: #8b0a12;
+            text-shadow: 0 0 10px rgba(139, 10, 18, 0.5);
         }
 
         .second-white,
@@ -353,20 +353,14 @@
             text-shadow: 0 0 8px rgba(235, 235, 240, 0.25);
         }
 
-        /* Разделительная линия */
+        /* Разделительная линия — как была */
         .divider-line {
-            width: 92%;
-            max-width: 400px;
-            height: 1.5px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(180, 15, 25, 0.6) 20%, 
-                rgba(235, 235, 240, 0.3) 50%, 
-                rgba(180, 15, 25, 0.6) 80%, 
-                transparent 100%);
-            opacity: 0.7;
+            width: 85%;
+            max-width: 380px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 20%, rgba(255,255,255,0.35) 80%, transparent 100%);
+            opacity: 0.6;
             margin: 5px 0;
-            border-radius: 2px;
         }
 
         .plus {
@@ -454,7 +448,7 @@
                 letter-spacing: 0.3px;
             }
             .divider-line {
-                width: 90%;
+                width: 80%;
             }
         }
     </style>
