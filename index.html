@@ -258,22 +258,10 @@
             text-shadow: 0 0 8px rgba(220, 220, 225, 0.2);
         }
 
-        /* Разделительная линия — тонкая белая */
-        .separator {
-            position: absolute;
-            top: 110px;
-            left: 15px;
-            width: 45%;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.05) 100%);
-            border-radius: 1px;
-            z-index: 11;
-        }
-
-        /* Кнопка красная — менее яркая */
+        /* Кнопка красная — БОЛЬШЕ НА МОБИЛЬНЫХ */
         .btn-red {
             position: absolute;
-            top: 135px;
+            top: 120px;
             left: 25px;
             z-index: 11;
             padding: 16px 50px;
@@ -303,10 +291,10 @@
             background: rgba(230, 57, 70, 0.18);
         }
 
-        /* Кнопка белая — менее яркая */
+        /* Кнопка белая — БОЛЬШЕ НА МОБИЛЬНЫХ */
         .btn-white {
             position: absolute;
-            top: 210px;
+            top: 195px;
             left: 25px;
             z-index: 11;
             padding: 16px 50px;
@@ -433,29 +421,23 @@
                 letter-spacing: 0.3px;
                 max-width: 42%;
             }
-            .separator {
-                top: 70px;
-                left: 10px;
-                width: 45%;
-                height: 1px;
-            }
             .btn-red {
-                top: 85px;
-                left: 15px;
-                padding: 10px 25px;
-                font-size: 13px;
-                letter-spacing: 0.8px;
-                max-width: 42%;
-                border-radius: 25px;
+                top: 75px;
+                left: 10px;
+                padding: 16px 35px;
+                font-size: 16px;
+                letter-spacing: 1px;
+                max-width: 50%;
+                border-radius: 30px;
             }
             .btn-white {
-                top: 130px;
-                left: 15px;
-                padding: 10px 25px;
-                font-size: 13px;
-                letter-spacing: 0.8px;
-                max-width: 42%;
-                border-radius: 25px;
+                top: 140px;
+                left: 10px;
+                padding: 16px 35px;
+                font-size: 16px;
+                letter-spacing: 1px;
+                max-width: 50%;
+                border-radius: 30px;
             }
             .second-title,
             .third-title,
@@ -490,7 +472,6 @@
             <div class="title-left">
                 <span class="title-red">Викладач</span> <span class="title-white">Англійської</span>
             </div>
-            <div class="separator"></div>
             <button class="btn-red">Записатись</button>
             <button class="btn-white">Пробний урок</button>
         </div>
