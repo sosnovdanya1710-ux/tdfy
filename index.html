@@ -368,6 +368,17 @@
             z-index: 8;
         }
 
+        /* Горизонтальная линия-разделитель */
+        .horizontal-line {
+            position: absolute;
+            left: 12px;
+            top: 38px;
+            width: 46%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+            z-index: 8;
+        }
+
         /* Текст справа от линии */
         .stats {
             position: absolute;
@@ -407,7 +418,7 @@
         .about-container {
             position: absolute;
             left: 12px;
-            top: 40px;
+            top: 45px;
             bottom: 10px;
             z-index: 11;
             width: 46%;
@@ -437,7 +448,7 @@
         .about-text {
             font-size: 12px;
             line-height: 1.5;
-            color: rgba(235, 235, 240, 0.6);
+            color: rgba(235, 235, 240, 0.45);
             letter-spacing: 0.2px;
         }
 
@@ -445,25 +456,42 @@
             margin-bottom: 6px;
         }
 
-        /* Стрелочка вниз — жирная, без анимации */
-        .scroll-arrow {
+        /* Стрелочка вниз */
+        .scroll-arrow-down {
             position: absolute;
-            left: 57%;
-            bottom: 3px;
+            left: 55%;
+            bottom: 2px;
             z-index: 12;
-            font-size: 28px;
-            font-weight: 900;
-            color: rgba(235, 235, 240, 0.75);
+            font-size: 18px;
+            font-weight: 700;
+            color: rgba(235, 235, 240, 0.4);
             cursor: pointer;
-            text-shadow: 
-                0 0 8px rgba(235, 235, 240, 0.4),
-                0 0 15px rgba(235, 235, 240, 0.2);
+            letter-spacing: 2px;
             transition: all 0.3s ease;
         }
 
-        .scroll-arrow:active {
+        .scroll-arrow-down:active {
             transform: scale(0.85);
-            color: rgba(235, 235, 240, 1);
+            color: rgba(235, 235, 240, 0.6);
+        }
+
+        /* Стрелочка вверх */
+        .scroll-arrow-up {
+            position: absolute;
+            left: 55%;
+            top: 2px;
+            z-index: 12;
+            font-size: 18px;
+            font-weight: 700;
+            color: rgba(235, 235, 240, 0.4);
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-arrow-up:active {
+            transform: scale(0.85);
+            color: rgba(235, 235, 240, 0.6);
         }
 
         /* Разделительная линия */
@@ -567,6 +595,11 @@
                 width: 1px;
                 box-shadow: 0 0 5px rgba(255,255,255,0.03), inset 0 0 5px rgba(255,255,255,0.02);
             }
+            .horizontal-line {
+                left: 8px;
+                top: 32px;
+                width: 44%;
+            }
             .stats {
                 left: 66%;
                 gap: 12px;
@@ -581,7 +614,7 @@
             }
             .about-container {
                 left: 8px;
-                top: 35px;
+                top: 38px;
                 bottom: 8px;
                 width: 44%;
             }
@@ -589,10 +622,15 @@
                 font-size: 10px;
                 line-height: 1.4;
             }
-            .scroll-arrow {
-                left: 55%;
-                bottom: 2px;
-                font-size: 24px;
+            .scroll-arrow-down {
+                left: 53%;
+                bottom: 1px;
+                font-size: 14px;
+            }
+            .scroll-arrow-up {
+                left: 53%;
+                top: 1px;
+                font-size: 14px;
             }
             .divider-line {
                 width: 80%;
@@ -627,6 +665,7 @@
 
         <div class="frame frame-small" id="about-frame">
             <div class="vertical-line"></div>
+            <div class="horizontal-line"></div>
             <div class="second-title">
                 <span class="second-red">Про</span> <span class="second-white">мене</span>
             </div>
@@ -638,7 +677,8 @@
                     </div>
                 </div>
             </div>
-            <div class="scroll-arrow" id="scroll-arrow">∨</div>
+            <div class="scroll-arrow-up" id="scroll-arrow-up">∧</div>
+            <div class="scroll-arrow-down" id="scroll-arrow-down">∨</div>
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-main">3+ роки</div>
@@ -667,10 +707,18 @@
     <div class="vignette"></div>
 
     <script>
-        document.getElementById('scroll-arrow').addEventListener('click', function() {
+        document.getElementById('scroll-arrow-down').addEventListener('click', function() {
             const scrollContainer = document.getElementById('about-scroll');
             scrollContainer.scrollBy({
                 top: 30,
+                behavior: 'smooth'
+            });
+        });
+
+        document.getElementById('scroll-arrow-up').addEventListener('click', function() {
+            const scrollContainer = document.getElementById('about-scroll');
+            scrollContainer.scrollBy({
+                top: -30,
                 behavior: 'smooth'
             });
         });
