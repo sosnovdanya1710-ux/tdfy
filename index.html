@@ -192,9 +192,10 @@
 
         .frame-small {
             height: 130px;
+            position: relative;
         }
 
-        /* Фото — чуть правее */
+        /* Фото */
         .photo {
             position: absolute;
             right: -10px;
@@ -233,11 +234,11 @@
             100% { opacity: 1; }
         }
 
-        /* Заголовок — чуть правее */
+        /* Заголовок большой */
         .title-left {
             position: absolute;
             top: 20px;
-            left: 35px;
+            left: 15px;
             z-index: 11;
             font-size: 38px;
             font-weight: 400;
@@ -253,6 +254,35 @@
         }
 
         .title-white {
+            color: rgba(220, 220, 225, 0.5);
+            text-shadow: 0 0 8px rgba(220, 220, 225, 0.2);
+        }
+
+        /* Заголовки в малых рамках */
+        .second-title,
+        .third-title,
+        .fourth-title {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 11;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .second-red,
+        .third-red,
+        .fourth-red {
+            color: rgba(160, 25, 40, 0.8);
+            text-shadow: 0 0 12px rgba(160, 25, 40, 0.35);
+        }
+
+        .second-white,
+        .third-white,
+        .fourth-white {
             color: rgba(220, 220, 225, 0.5);
             text-shadow: 0 0 8px rgba(220, 220, 225, 0.2);
         }
@@ -337,10 +367,18 @@
             }
             .title-left {
                 top: 15px;
-                left: 22px;
+                left: 10px;
                 font-size: 24px;
                 letter-spacing: 0.3px;
                 max-width: 48%;
+            }
+            .second-title,
+            .third-title,
+            .fourth-title {
+                top: 10px;
+                left: 12px;
+                font-size: 18px;
+                letter-spacing: 0.3px;
             }
             .divider-line {
                 width: 80%;
@@ -371,9 +409,23 @@
 
         <div class="divider-line"></div>
 
-        <div class="frame frame-small"><div class="plus">+</div></div>
-        <div class="frame frame-small"><div class="plus">+</div></div>
-        <div class="frame frame-small"><div class="plus">+</div></div>
+        <div class="frame frame-small">
+            <div class="second-title">
+                <span class="second-red">Про</span> <span class="second-white">мене</span>
+            </div>
+        </div>
+
+        <div class="frame frame-small">
+            <div class="third-title">
+                <span class="third-red">Вар</span><span class="third-white">тість</span>
+            </div>
+        </div>
+
+        <div class="frame frame-small">
+            <div class="fourth-title">
+                <span class="fourth-red">Від</span><span class="fourth-white">гуки</span>
+            </div>
+        </div>
     </div>
 
     <div class="star" style="left: 3%; font-size: 3px; animation-duration: 22s;">✦</div>
