@@ -233,7 +233,7 @@
             100% { opacity: 1; }
         }
 
-        /* Заголовок слева от фото — жирнее и шире */
+        /* Заголовок — шире через letter-spacing без transform */
         .title-left {
             position: absolute;
             top: 30px;
@@ -242,7 +242,7 @@
             font-size: 28px;
             font-weight: 900;
             color: rgba(140, 20, 30, 0.75);
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-shadow: 
                 -1px -1px 0 rgba(0, 0, 0, 0.85),
                 1px -1px 0 rgba(0, 0, 0, 0.85),
@@ -253,9 +253,8 @@
             text-transform: uppercase;
             max-width: 55%;
             line-height: 1.25;
-            transform: scaleX(1.05);
-            transform-origin: left;
             -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.7);
+            font-stretch: expanded;
         }
 
         /* Разделительная линия */
@@ -340,9 +339,8 @@
                 top: 20px;
                 left: 15px;
                 font-size: 18px;
-                letter-spacing: 1.2px;
+                letter-spacing: 1.5px;
                 max-width: 48%;
-                transform: scaleX(1.03);
             }
             .divider-line {
                 width: 80%;
