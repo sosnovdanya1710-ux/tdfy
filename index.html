@@ -105,7 +105,7 @@
         .glow-1 {
             width: 55vw;
             height: 55vw;
-            background: radial-gradient(circle, rgba(230, 57, 70, 0.4) 0%, rgba(230, 57, 70, 0) 70%);
+            background: radial-gradient(circle, rgba(255, 50, 65, 0.5) 0%, rgba(230, 57, 70, 0) 70%);
             top: 28%;
             left: 22%;
             -webkit-filter: blur(60px);
@@ -115,7 +115,7 @@
         .glow-2 {
             width: 45vw;
             height: 45vw;
-            background: radial-gradient(circle, rgba(155, 28, 40, 0.45) 0%, rgba(155, 28, 40, 0) 65%);
+            background: radial-gradient(circle, rgba(180, 25, 35, 0.55) 0%, rgba(155, 28, 40, 0) 65%);
             bottom: 8%;
             right: 12%;
             -webkit-filter: blur(60px);
@@ -125,7 +125,7 @@
         .glow-3 {
             width: 38vw;
             height: 38vw;
-            background: radial-gradient(circle, rgba(255, 77, 90, 0.35) 0%, rgba(255, 77, 90, 0) 70%);
+            background: radial-gradient(circle, rgba(255, 60, 75, 0.42) 0%, rgba(255, 77, 90, 0) 70%);
             top: 8%;
             left: 48%;
             -webkit-filter: blur(60px);
@@ -135,7 +135,7 @@
         .glow-4 {
             width: 65vw;
             height: 25vh;
-            background: radial-gradient(ellipse, rgba(230, 57, 70, 0.38) 0%, rgba(230, 57, 70, 0) 70%);
+            background: radial-gradient(ellipse, rgba(255, 45, 60, 0.48) 0%, rgba(230, 57, 70, 0) 70%);
             bottom: -5%;
             left: 18%;
             -webkit-filter: blur(60px);
@@ -212,7 +212,7 @@
             z-index: 10;
         }
 
-        /* Неон за фото */
+        /* Неон за фото — менее яркий */
         .photo-glow {
             position: absolute;
             right: -15px;
@@ -222,7 +222,7 @@
             width: 58%;
             height: 90%;
             border-radius: 25px;
-            background: radial-gradient(ellipse, rgba(255, 30, 45, 0.85) 0%, rgba(230, 40, 55, 0.45) 40%, rgba(200, 20, 30, 0.15) 70%, rgba(200, 20, 30, 0) 100%);
+            background: radial-gradient(ellipse, rgba(255, 50, 65, 0.6) 0%, rgba(230, 40, 55, 0.3) 40%, rgba(200, 20, 30, 0.1) 70%, rgba(200, 20, 30, 0) 100%);
             -webkit-filter: blur(35px);
             filter: blur(35px);
             z-index: 9;
@@ -230,11 +230,11 @@
         }
 
         @keyframes neonPulse {
-            0% { opacity: 0.85; }
-            100% { opacity: 1; }
+            0% { opacity: 0.7; }
+            100% { opacity: 0.9; }
         }
 
-        /* Заголовок большой — ТЁМНО-КРАСНЫЙ, ЕЩЁ ТЕМНЕЕ */
+        /* Заголовок большой */
         .title-left {
             position: absolute;
             top: 20px;
@@ -249,13 +249,15 @@
         }
 
         .title-red {
-            color: #8b0a12;
-            text-shadow: 0 0 10px rgba(139, 10, 18, 0.5);
+            color: rgba(120, 8, 14, 0.85);
+            text-shadow: 0 0 8px rgba(120, 8, 14, 0.35);
         }
 
         .title-white {
-            color: rgba(235, 235, 240, 0.7);
-            text-shadow: 0 0 8px rgba(235, 235, 240, 0.25);
+            color: rgba(235, 235, 240, 0.55);
+            text-shadow: 0 0 6px rgba(235, 235, 240, 0.15);
+            display: inline-block;
+            margin-top: 5px;
         }
 
         /* Кнопка красная */
@@ -324,7 +326,7 @@
             background: rgba(255, 255, 255, 0.18);
         }
 
-        /* Заголовки в малых рамках — ТЁМНО-КРАСНЫЙ */
+        /* Заголовки в малых рамках */
         .second-title,
         .third-title,
         .fourth-title {
@@ -342,18 +344,18 @@
         .second-red,
         .third-red,
         .fourth-red {
-            color: #8b0a12;
-            text-shadow: 0 0 10px rgba(139, 10, 18, 0.5);
+            color: rgba(120, 8, 14, 0.85);
+            text-shadow: 0 0 8px rgba(120, 8, 14, 0.35);
         }
 
         .second-white,
         .third-white,
         .fourth-white {
-            color: rgba(235, 235, 240, 0.7);
-            text-shadow: 0 0 8px rgba(235, 235, 240, 0.25);
+            color: rgba(235, 235, 240, 0.55);
+            text-shadow: 0 0 6px rgba(235, 235, 240, 0.15);
         }
 
-        /* Разделительная линия — как была */
+        /* Разделительная линия */
         .divider-line {
             width: 85%;
             max-width: 380px;
