@@ -194,7 +194,7 @@
             height: 130px;
         }
 
-        /* Фото — по горизонтали */
+        /* Фото */
         .photo {
             position: absolute;
             right: 5px;
@@ -211,7 +211,7 @@
             z-index: 10;
         }
 
-        /* Красный неон за фото */
+        /* Неон */
         .photo-glow {
             position: absolute;
             right: 0;
@@ -233,22 +233,28 @@
             100% { opacity: 1; }
         }
 
-        /* Заголовок — крупный, без обводки, ярче */
+        /* Заголовок — Викладач красный, Англійської белый */
         .title-left {
             position: absolute;
-            top: 25px;
+            top: 20px;
             left: 20px;
             z-index: 11;
-            font-size: 40px;
+            font-size: 38px;
             font-weight: 400;
-            color: rgba(200, 40, 55, 0.9);
-            letter-spacing: 1px;
-            text-shadow: 
-                0 0 15px rgba(200, 40, 55, 0.5),
-                0 0 30px rgba(200, 40, 55, 0.3);
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            max-width: 55%;
-            line-height: 1.15;
+            max-width: 50%;
+            line-height: 1.1;
+        }
+
+        .title-red {
+            color: rgba(160, 25, 40, 0.8);
+            text-shadow: 0 0 12px rgba(160, 25, 40, 0.35);
+        }
+
+        .title-white {
+            color: rgba(220, 220, 225, 0.5);
+            text-shadow: 0 0 8px rgba(220, 220, 225, 0.2);
         }
 
         /* Разделительная линия */
@@ -333,9 +339,8 @@
                 top: 15px;
                 left: 12px;
                 font-size: 24px;
-                letter-spacing: 0.5px;
-                max-width: 50%;
-                color: rgba(200, 40, 55, 0.9);
+                letter-spacing: 0.3px;
+                max-width: 48%;
             }
             .divider-line {
                 width: 80%;
@@ -359,7 +364,9 @@
         <div class="frame frame-main">
             <div class="photo-glow"></div>
             <img class="photo" src="https://i.postimg.cc/SsmHrJGk/file-00000000e5d081f49bc9e7c6512b4e6e.png" alt="Фото">
-            <div class="title-left">Викладач Англійської</div>
+            <div class="title-left">
+                <span class="title-red">Викладач</span> <span class="title-white">Англійської</span>
+            </div>
         </div>
 
         <div class="divider-line"></div>
