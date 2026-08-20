@@ -374,15 +374,15 @@
         .second-red,
         .third-red,
         .fourth-red {
-            color: rgba(180, 25, 35, 0.85);
-            text-shadow: 0 0 8px rgba(180, 25, 35, 0.35);
+            color: rgba(220, 40, 50, 0.95);
+            text-shadow: 0 0 10px rgba(220, 40, 50, 0.5);
         }
 
         .second-white,
         .third-white,
         .fourth-white {
-            color: rgba(235, 235, 240, 0.65);
-            text-shadow: 0 0 6px rgba(235, 235, 240, 0.2);
+            color: rgba(235, 235, 240, 0.7);
+            text-shadow: 0 0 6px rgba(235, 235, 240, 0.25);
         }
 
         /* Вертикальная линия */
@@ -444,57 +444,77 @@
         /* Ценовые карточки */
         .price-cards {
             position: absolute;
-            left: 15px;
-            top: 40px;
-            width: 90%;
+            left: 10px;
+            right: 10px;
+            top: 38px;
+            bottom: 8px;
             display: flex;
-            gap: 8px;
+            gap: 6px;
             z-index: 11;
+            align-items: flex-end;
         }
 
         .price-card {
             flex: 1;
-            background: rgba(180, 25, 35, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 8px 5px;
+            background: rgba(200, 30, 40, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            padding: 6px 4px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
+            min-width: 0;
+        }
+
+        .price-card.tall {
+            height: 100%;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .price-card.short {
+            height: 85%;
+            justify-content: center;
         }
 
         .price-title {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.3px;
             text-transform: uppercase;
             color: rgba(235, 235, 240, 0.85);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+            white-space: nowrap;
         }
 
         .price-line {
-            width: 100%;
+            width: calc(100% + 8px);
+            margin-left: -4px;
+            margin-right: -4px;
             height: 1px;
-            background: rgba(255, 255, 255, 0.25);
-            margin: 4px 0;
+            background: rgba(255, 255, 255, 0.3);
+            margin-top: 3px;
+            margin-bottom: 3px;
         }
 
         .price-amount {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
-            color: rgba(235, 235, 240, 0.95);
+            color: rgba(255, 255, 255, 0.95);
             letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         .price-sub {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 500;
-            color: rgba(235, 235, 240, 0.65);
-            margin-top: 4px;
-            letter-spacing: 0.3px;
+            color: rgba(235, 235, 240, 0.7);
+            margin-top: 3px;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
         }
 
         .vignette {
@@ -597,18 +617,23 @@
                 width: 80%;
             }
             .price-cards {
-                left: 10px;
-                top: 38px;
-                gap: 5px;
+                left: 8px;
+                right: 8px;
+                top: 36px;
+                bottom: 6px;
+                gap: 4px;
+            }
+            .price-card.tall {
+                margin-bottom: 5px;
             }
             .price-title {
-                font-size: 9px;
+                font-size: 8px;
             }
             .price-amount {
-                font-size: 15px;
+                font-size: 14px;
             }
             .price-sub {
-                font-size: 8px;
+                font-size: 7px;
             }
         }
     </style>
@@ -663,21 +688,21 @@
                 <span class="third-red">Вар</span><span class="third-white">тість</span>
             </div>
             <div class="price-cards">
-                <div class="price-card">
+                <div class="price-card short">
                     <div class="price-title">Разове</div>
                     <div class="price-line"></div>
                     <div class="price-amount">200 ₴</div>
                     <div class="price-line"></div>
                     <div class="price-sub">1 Заняття</div>
                 </div>
-                <div class="price-card">
+                <div class="price-card tall">
                     <div class="price-title">Пакет 5</div>
                     <div class="price-line"></div>
                     <div class="price-amount">900 ₴</div>
                     <div class="price-line"></div>
                     <div class="price-sub">5 Зайнять</div>
                 </div>
-                <div class="price-card">
+                <div class="price-card tall">
                     <div class="price-title">Пакет 10</div>
                     <div class="price-line"></div>
                     <div class="price-amount">1700 ₴</div>
