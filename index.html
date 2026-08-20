@@ -196,6 +196,34 @@
             overflow: hidden;
         }
 
+        /* Внутренняя рамка */
+        .inner-frame {
+            position: absolute;
+            left: 15px;
+            top: 45px;
+            width: 53%;
+            height: 70px;
+            border: 1.5px solid rgba(255,255,255,0.15);
+            border-radius: 15px;
+            background: rgba(255,255,255,0.02);
+            box-shadow: 0 0 15px rgba(255,255,255,0.04), inset 0 0 15px rgba(255,255,255,0.03);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 9;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .inner-frame-text {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: rgba(235, 235, 240, 0.7);
+            text-transform: none;
+            line-height: 1.4;
+        }
+
         /* Фото */
         .photo {
             position: absolute;
@@ -369,18 +397,6 @@
             z-index: 8;
         }
 
-        /* Горизонтальная линия */
-        .horizontal-line {
-            position: absolute;
-            left: 0;
-            top: 100px;
-            width: 62%;
-            height: 1.5px;
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 8px rgba(255,255,255,0.04), inset 0 0 8px rgba(255,255,255,0.03);
-            z-index: 8;
-        }
-
         /* Статистика справа */
         .stats {
             position: absolute;
@@ -500,10 +516,16 @@
                 left: 58%;
                 width: 1px;
             }
-            .horizontal-line {
-                top: 82px;
-                width: 58%;
-                height: 1px;
+            .inner-frame {
+                left: 10px;
+                top: 40px;
+                width: 50%;
+                height: 55px;
+                padding: 8px;
+            }
+            .inner-frame-text {
+                font-size: 10px;
+                line-height: 1.3;
             }
             .stats {
                 left: 66%;
@@ -548,9 +570,11 @@
 
         <div class="frame frame-small">
             <div class="vertical-line"></div>
-            <div class="horizontal-line"></div>
             <div class="second-title" style="max-width: 50%; line-height: 1.4; font-size: 16px;">
-                <span class="second-red" style="font-size: 16px;">Про</span> <span class="second-white" style="font-size: 16px;">мене</span> <span class="second-white" style="font-size: 16px;">-</span> <span style="font-size: 14px; font-weight: 500; letter-spacing: 0.3px; color: rgba(235, 235, 240, 0.55); text-transform: none;">Звати Олексій,<br>19 років. Викладаю англійську онлайн.</span>
+                <span class="second-red" style="font-size: 16px;">Про</span> <span class="second-white" style="font-size: 16px;">мене</span> <span class="second-white" style="font-size: 16px;">-</span>
+            </div>
+            <div class="inner-frame">
+                <span class="inner-frame-text">Звати Олексій, 19 років. Викладаю англійську онлайн.</span>
             </div>
             <div class="stats">
                 <div class="stat-item">
