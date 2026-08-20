@@ -346,15 +346,15 @@
         .second-red,
         .third-red,
         .fourth-red {
-            color: rgba(180, 25, 35, 0.65);
-            text-shadow: 0 0 6px rgba(180, 25, 35, 0.2);
+            color: rgba(180, 25, 35, 0.85);
+            text-shadow: 0 0 8px rgba(180, 25, 35, 0.35);
         }
 
         .second-white,
         .third-white,
         .fourth-white {
-            color: rgba(235, 235, 240, 0.45);
-            text-shadow: 0 0 4px rgba(235, 235, 240, 0.1);
+            color: rgba(235, 235, 240, 0.65);
+            text-shadow: 0 0 6px rgba(235, 235, 240, 0.2);
         }
 
         /* Вертикальная линия */
@@ -364,6 +364,18 @@
             top: 0;
             bottom: 0;
             width: 1.5px;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 8px rgba(255,255,255,0.04), inset 0 0 8px rgba(255,255,255,0.03);
+            z-index: 8;
+        }
+
+        /* Горизонтальная линия */
+        .horizontal-line {
+            position: absolute;
+            left: 0;
+            top: 100px;
+            width: 62%;
+            height: 1.5px;
             background: rgba(255, 255, 255, 0.15);
             box-shadow: 0 0 8px rgba(255,255,255,0.04), inset 0 0 8px rgba(255,255,255,0.03);
             z-index: 8;
@@ -488,6 +500,11 @@
                 left: 58%;
                 width: 1px;
             }
+            .horizontal-line {
+                top: 82px;
+                width: 58%;
+                height: 1px;
+            }
             .stats {
                 left: 66%;
                 gap: 12px;
@@ -531,8 +548,9 @@
 
         <div class="frame frame-small">
             <div class="vertical-line"></div>
-            <div class="second-title" style="max-width: 50%; line-height: 1.4;">
-                <span class="second-red">Про</span> <span class="second-white">мене</span> <span class="second-white">-</span> <span style="font-size: 14px; font-weight: 500; letter-spacing: 0.3px; color: rgba(235, 235, 240, 0.8); text-transform: none;">Звати Олексій,<br>19 років. Викладаю англійську онлайн.</span>
+            <div class="horizontal-line"></div>
+            <div class="second-title" style="max-width: 50%; line-height: 1.4; font-size: 16px;">
+                <span class="second-red" style="font-size: 16px;">Про</span> <span class="second-white" style="font-size: 16px;">мене</span> <span class="second-white" style="font-size: 16px;">-</span> <span style="font-size: 14px; font-weight: 500; letter-spacing: 0.3px; color: rgba(235, 235, 240, 0.55); text-transform: none;">Звати Олексій,<br>19 років. Викладаю англійську онлайн.</span>
             </div>
             <div class="stats">
                 <div class="stat-item">
