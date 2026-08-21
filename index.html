@@ -224,7 +224,7 @@
         }
 
         .inner-frame-text {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             letter-spacing: 0.3px;
             color: rgba(235, 235, 240, 0.7);
@@ -235,11 +235,11 @@
 
         /* Плюсик */
         .plus-btn {
-            width: 24px;
-            height: 24px;
-            border: 1px solid rgba(255,255,255,0.3);
+            width: 26px;
+            height: 26px;
+            border: 2px solid rgba(255,255,255,0.5);
             border-radius: 50%;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.08);
             cursor: pointer;
             z-index: 12;
             display: flex;
@@ -251,14 +251,15 @@
         }
 
         .plus-btn:hover {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.15);
         }
 
         .plus-icon {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             filter: brightness(0) invert(1);
-            opacity: 0.7;
+            opacity: 0.9;
+            stroke-width: 3;
         }
 
         /* Модальное окно */
@@ -268,7 +269,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: rgba(10, 5, 6, 0.8);
+            background: rgba(10, 5, 6, 0.7);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             z-index: 100;
@@ -290,12 +291,12 @@
             width: 100%;
             max-width: 400px;
             max-height: 80vh;
-            border: 1.5px solid rgba(255,255,255,0.2);
+            border: 1.5px solid rgba(255,255,255,0.25);
             border-radius: 25px;
-            background: rgba(20, 8, 10, 0.9);
-            box-shadow: 0 0 40px rgba(255,255,255,0.08), inset 0 0 30px rgba(255,255,255,0.04);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(20, 8, 10, 0.75);
+            box-shadow: 0 0 40px rgba(255,255,255,0.1), inset 0 0 30px rgba(255,255,255,0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 25px 20px;
             position: relative;
             overflow-y: auto;
@@ -314,7 +315,7 @@
             float: right;
             width: 30px;
             height: 30px;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1.5px solid rgba(255,255,255,0.35);
             border-radius: 50%;
             background: rgba(255,255,255,0.05);
             cursor: pointer;
@@ -343,15 +344,15 @@
             letter-spacing: 0.4px;
             text-transform: uppercase;
             margin-bottom: 15px;
-            color: rgba(180, 25, 35, 0.8);
-            text-shadow: 0 0 8px rgba(180, 25, 35, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         .modal-text {
             font-size: 14px;
             font-weight: 500;
             letter-spacing: 0.3px;
-            color: rgba(235, 235, 240, 0.85);
+            color: rgba(235, 235, 240, 0.9);
             line-height: 1.6;
         }
 
@@ -716,7 +717,7 @@
                 padding: 6px;
             }
             .inner-frame-text {
-                font-size: 10px;
+                font-size: 9px;
                 line-height: 1.25;
             }
             .stats {
@@ -746,13 +747,14 @@
                 margin-bottom: 5px;
             }
             .plus-btn {
-                width: 20px;
-                height: 20px;
+                width: 22px;
+                height: 22px;
                 margin-left: 4px;
+                border-width: 2px;
             }
             .plus-icon {
-                width: 10px;
-                height: 10px;
+                width: 12px;
+                height: 12px;
             }
             .modal-frame {
                 max-height: 75vh;
@@ -812,9 +814,9 @@
                 <span class="second-red" style="font-size: 18px;">Про</span> <span class="second-white" style="font-size: 18px;">мене</span>
             </div>
             <div class="inner-frame">
-                <span class="inner-frame-text">Звати Олексій, 19 років. Викладаю англійську онлайн. Шукаю нових учнів.</span>
+                <span class="inner-frame-text">Звати Олексій, 19 років. Викладаю англійську онлайн. Шукаю учнів.</span>
                 <button class="plus-btn" onclick="openModal()">
-                    <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="5" x2="12" y2="19"/>
                         <line x1="5" y1="12" x2="19" y2="12"/>
                     </svg>
