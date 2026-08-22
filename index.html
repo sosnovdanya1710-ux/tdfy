@@ -209,8 +209,8 @@
             position: absolute;
             left: 15px;
             top: 45px;
-            width: 52%;
-            height: 68px;
+            width: 50%;
+            height: 72px;
             border: 1.5px solid rgba(255,255,255,0.15);
             border-radius: 15px;
             background: rgba(255,255,255,0.02);
@@ -224,7 +224,7 @@
         }
 
         .inner-frame-text {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 500;
             letter-spacing: 0.3px;
             color: rgba(235, 235, 240, 0.7);
@@ -233,33 +233,34 @@
             flex: 1;
         }
 
-        /* Плюсик */
+        /* Плюсик без круга */
         .plus-btn {
-            width: 26px;
-            height: 26px;
-            border: 2px solid rgba(255,255,255,0.5);
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
+            position: absolute;
+            left: 58%;
+            top: 78%;
+            transform: translate(-50%, -50%);
+            width: 22px;
+            height: 22px;
+            border: none;
+            background: transparent;
             cursor: pointer;
             z-index: 12;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            flex-shrink: 0;
-            margin-left: 6px;
         }
 
         .plus-btn:hover {
-            background: rgba(255,255,255,0.15);
+            opacity: 0.6;
         }
 
         .plus-icon {
-            width: 14px;
-            height: 14px;
+            width: 20px;
+            height: 20px;
             filter: brightness(0) invert(1);
-            opacity: 0.9;
-            stroke-width: 3;
+            opacity: 0.35;
+            stroke-width: 3.5;
         }
 
         /* Модальное окно */
@@ -711,13 +712,13 @@
             }
             .inner-frame {
                 left: 10px;
-                top: 35px;
-                width: 50%;
-                height: 55px;
+                top: 38px;
+                width: 48%;
+                height: 58px;
                 padding: 6px;
             }
             .inner-frame-text {
-                font-size: 9px;
+                font-size: 10px;
                 line-height: 1.25;
             }
             .stats {
@@ -747,14 +748,14 @@
                 margin-bottom: 5px;
             }
             .plus-btn {
-                width: 22px;
-                height: 22px;
-                margin-left: 4px;
-                border-width: 2px;
+                left: 54%;
+                top: 75%;
+                width: 18px;
+                height: 18px;
             }
             .plus-icon {
-                width: 12px;
-                height: 12px;
+                width: 16px;
+                height: 16px;
             }
             .modal-frame {
                 max-height: 75vh;
@@ -814,14 +815,14 @@
                 <span class="second-red" style="font-size: 18px;">Про</span> <span class="second-white" style="font-size: 18px;">мене</span>
             </div>
             <div class="inner-frame">
-                <span class="inner-frame-text">Звати Олексій, 19 років. Викладаю англійську онлайн. Шукаю учнів.</span>
-                <button class="plus-btn" onclick="openModal()">
-                    <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="12" y1="5" x2="12" y2="19"/>
-                        <line x1="5" y1="12" x2="19" y2="12"/>
-                    </svg>
-                </button>
+                <span class="inner-frame-text">Звати Олексій, 19 років. Викладаю англійську онлайн. Шукаю нових учнів.</span>
             </div>
+            <button class="plus-btn" onclick="openModal()">
+                <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+            </button>
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-main">3+ роки</div>
