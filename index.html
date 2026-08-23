@@ -619,6 +619,18 @@
             z-index: 8;
         }
 
+        /* Горизонтальная линия для Вартість */
+        .horizontal-line-price {
+            position: absolute;
+            left: 0;
+            top: 40px;
+            width: 28%;
+            height: 1.5px;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 8px rgba(255,255,255,0.04), inset 0 0 8px rgba(255,255,255,0.03);
+            z-index: 8;
+        }
+
         /* Информация об отзывах */
         .reviews-info {
             position: absolute;
@@ -713,14 +725,58 @@
             margin: 5px 0;
         }
 
-        /* Одна большая карточка по центру */
+        /* Текст слева внизу вертикально */
+        .price-text-bottom-left {
+            position: absolute;
+            left: 14%;
+            bottom: 24px;
+            z-index: 11;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            max-width: 12%;
+            transform: translateX(-50%);
+        }
+
+        .price-text-title {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            color: rgba(255, 255, 255, 0.35);
+            white-space: nowrap;
+            font-family: 'Rubik', Arial, sans-serif;
+        }
+
+        .arrow-down-small {
+            width: 10px;
+            height: 10px;
+            filter: brightness(0) invert(1);
+            opacity: 0.3;
+            stroke-width: 3;
+            flex-shrink: 0;
+        }
+
+        .price-text-amount {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            font-family: 'Rubik', Arial, sans-serif;
+        }
+
+        /* Три карточки одинаковые справа от линии, выше и по центру */
         .price-cards {
             position: absolute;
-            left: 25%;
-            right: 25%;
-            top: 42px;
-            bottom: 12px;
+            left: 30%;
+            right: 3%;
+            top: 50%;
+            transform: translateY(-50%);
+            bottom: auto;
+            height: 80px;
             display: flex;
+            gap: 6px;
             z-index: 11;
             align-items: center;
         }
@@ -729,8 +785,8 @@
             flex: 1;
             background: rgba(255,255,255,0.02);
             border: 1.5px solid rgba(255,255,255,0.15);
-            border-radius: 25px;
-            padding: 8px 5px;
+            border-radius: 18px;
+            padding: 8px 4px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -741,27 +797,27 @@
             box-shadow: 0 0 15px rgba(255,255,255,0.04), inset 0 0 15px rgba(255,255,255,0.03);
             position: relative;
             overflow: hidden;
-            height: 100%;
             justify-content: center;
+            height: 100%;
         }
 
         .price-title {
-            font-size: 13px;
-            font-weight: 900;
+            font-size: 11px;
+            font-weight: 800;
             letter-spacing: 0.3px;
             text-transform: uppercase;
-            color: rgba(235, 235, 240, 0.75);
+            color: rgba(235, 235, 240, 0.8);
             white-space: nowrap;
             font-family: 'Rubik', Arial, sans-serif;
         }
 
         .price-amount {
-            font-size: 22px;
+            font-size: 17px;
             font-weight: 900;
             color: rgba(180, 25, 35, 0.7);
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             white-space: nowrap;
-            text-shadow: 0 0 6px rgba(180, 25, 35, 0.2);
+            text-shadow: 0 0 5px rgba(180, 25, 35, 0.2);
             margin: 4px 0;
             font-family: 'Rubik', Arial, sans-serif;
         }
@@ -773,23 +829,12 @@
         }
 
         .price-sub {
-            font-size: 12px;
-            font-weight: 700;
+            font-size: 9px;
+            font-weight: 600;
             color: rgba(235, 235, 240, 0.5);
             white-space: nowrap;
             letter-spacing: 0.2px;
             font-family: 'Rubik', Arial, sans-serif;
-        }
-
-        /* Звездочка популярное */
-        .popular-badge {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            width: 11px;
-            height: 11px;
-            filter: brightness(0) invert(1);
-            opacity: 0.7;
         }
 
         .vignette {
@@ -883,6 +928,12 @@
                 width: 30%;
                 height: 1px;
             }
+            .horizontal-line-price {
+                left: 0;
+                top: 34px;
+                width: 30%;
+                height: 1px;
+            }
             .reviews-big-frame {
                 left: 34%;
                 top: 50%;
@@ -950,25 +1001,41 @@
                 width: 80%;
             }
             .price-cards {
-                left: 20%;
-                right: 20%;
-                top: 38px;
-                bottom: 8px;
+                left: 31%;
+                right: 3%;
+                top: 50%;
+                transform: translateY(-50%);
+                height: 65px;
+                gap: 5px;
+            }
+            .price-card {
+                border-radius: 14px;
+                padding: 6px 3px;
             }
             .price-title {
-                font-size: 10px;
-            }
-            .price-amount {
-                font-size: 17px;
-            }
-            .price-sub {
                 font-size: 9px;
             }
-            .popular-badge {
-                width: 9px;
-                height: 9px;
-                top: 4px;
-                right: 4px;
+            .price-amount {
+                font-size: 14px;
+            }
+            .price-sub {
+                font-size: 7px;
+            }
+            .price-text-bottom-left {
+                left: 14%;
+                bottom: 20px;
+                gap: 1px;
+                max-width: 12%;
+            }
+            .price-text-title {
+                font-size: 9px;
+            }
+            .arrow-down-small {
+                width: 8px;
+                height: 8px;
+            }
+            .price-text-amount {
+                font-size: 9px;
             }
         }
     </style>
@@ -1034,14 +1101,33 @@
 
         <div class="frame frame-small">
             <div class="vertical-line-right"></div>
+            <div class="horizontal-line-price"></div>
             <div class="third-title">
                 <span class="third-red">Вар</span><span class="third-white">тість</span>
+            </div>
+            <div class="price-text-bottom-left">
+                <span class="price-text-title">1 заняття</span>
+                <svg class="arrow-down-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"/>
+                    <polyline points="19 12 12 19 5 12"/>
+                </svg>
+                <span class="price-text-amount">200₴/1 година</span>
             </div>
             <div class="price-cards">
                 <div class="price-card">
                     <div class="price-title">Разове</div>
                     <div class="price-amount">200 <span class="price-amount-white">₴</span></div>
                     <div class="price-sub">1 заняття</div>
+                </div>
+                <div class="price-card">
+                    <div class="price-title">Стандарт</div>
+                    <div class="price-amount">1400 <span class="price-amount-white">₴</span></div>
+                    <div class="price-sub">7 занять</div>
+                </div>
+                <div class="price-card">
+                    <div class="price-title">Максимум</div>
+                    <div class="price-amount">6000 <span class="price-amount-white">₴</span></div>
+                    <div class="price-sub">30 занять</div>
                 </div>
             </div>
         </div>
