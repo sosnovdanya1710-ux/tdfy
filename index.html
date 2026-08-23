@@ -229,6 +229,79 @@
             font-family: 'Rubik', Arial, sans-serif;
         }
 
+        /* Большая рамка справа от линии в Відгуки */
+        .reviews-big-frame {
+            position: absolute;
+            left: 32%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 63%;
+            height: 75px;
+            border: 1.5px solid rgba(255,255,255,0.15);
+            border-radius: 25px;
+            background: rgba(255,255,255,0.02);
+            box-shadow: 0 0 15px rgba(255,255,255,0.04), inset 0 0 15px rgba(255,255,255,0.03);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 9;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Линия слева */
+        .line-left {
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 1.5px;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 8px rgba(255,255,255,0.04), inset 0 0 8px rgba(255,255,255,0.03);
+            z-index: 10;
+        }
+
+        /* Линия справа (отзеркаленная) */
+        .line-right-mirror {
+            position: absolute;
+            right: 40px;
+            top: 0;
+            bottom: 0;
+            width: 1.5px;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 8px rgba(255,255,255,0.04), inset 0 0 8px rgba(255,255,255,0.03);
+            z-index: 10;
+        }
+
+        /* Стрелка влево */
+        .arrow-left {
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
+            opacity: 0.3;
+            cursor: pointer;
+            z-index: 11;
+            stroke-width: 3.5;
+        }
+
+        /* Стрелка вправо */
+        .arrow-right {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
+            opacity: 0.3;
+            cursor: pointer;
+            z-index: 11;
+            stroke-width: 3.5;
+        }
+
         /* Фото */
         .photo {
             position: absolute;
@@ -731,6 +804,34 @@
                 width: 30%;
                 height: 1px;
             }
+            .reviews-big-frame {
+                left: 34%;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 60%;
+                height: 60px;
+                border-radius: 20px;
+            }
+            .line-left {
+                left: 30px;
+            }
+            .line-right-mirror {
+                right: 30px;
+            }
+            .arrow-left {
+                left: 3px;
+                width: 22px;
+                height: 22px;
+                opacity: 0.3;
+                stroke-width: 3.5;
+            }
+            .arrow-right {
+                right: 3px;
+                width: 22px;
+                height: 22px;
+                opacity: 0.3;
+                stroke-width: 3.5;
+            }
             .reviews-info {
                 left: 5%;
                 gap: 3px;
@@ -915,6 +1016,16 @@
                         <svg class="review-star-white" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     </div>
                 </div>
+            </div>
+            <div class="reviews-big-frame">
+                <div class="line-left"></div>
+                <div class="line-right-mirror"></div>
+                <svg class="arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+                <svg class="arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"/>
+                </svg>
             </div>
         </div>
     </div>
