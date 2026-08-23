@@ -378,10 +378,10 @@
         .third-title,
         .fourth-title {
             position: absolute;
-            top: 12px;
+            top: 10px;
             left: 15px;
             z-index: 11;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             letter-spacing: 0.4px;
             text-transform: uppercase;
@@ -569,6 +569,161 @@
             opacity: 0.7;
         }
 
+        /* Отзывы */
+        .reviews-inner-frame {
+            position: absolute;
+            left: 12px;
+            top: 38px;
+            width: 92%;
+            height: 82px;
+            border: 1.5px solid rgba(255,255,255,0.15);
+            border-radius: 15px;
+            background: rgba(255,255,255,0.02);
+            box-shadow: 0 0 15px rgba(255,255,255,0.04), inset 0 0 15px rgba(255,255,255,0.03);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 9;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .reviews-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+        }
+
+        .review-slide {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 5px 25px;
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 4px;
+        }
+
+        .review-star {
+            width: 8px;
+            height: 8px;
+            fill: rgba(255, 200, 50, 0.8);
+            filter: drop-shadow(0 0 3px rgba(255, 200, 50, 0.4));
+        }
+
+        .review-text {
+            font-size: 8px;
+            font-weight: 500;
+            color: rgba(235, 235, 240, 0.75);
+            line-height: 1.3;
+            letter-spacing: 0.2px;
+            margin-bottom: 3px;
+            font-family: 'Rubik', Arial, sans-serif;
+            max-height: 30px;
+            overflow: hidden;
+        }
+
+        .review-name {
+            font-size: 8px;
+            font-weight: 700;
+            color: rgba(180, 25, 35, 0.7);
+            letter-spacing: 0.3px;
+            font-family: 'Rubik', Arial, sans-serif;
+        }
+
+        .review-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 12;
+            transition: all 0.3s ease;
+        }
+
+        .review-nav:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .review-nav.prev {
+            left: 3px;
+        }
+
+        .review-nav.next {
+            right: 3px;
+        }
+
+        .review-nav-icon {
+            width: 7px;
+            height: 7px;
+            filter: brightness(0) invert(1);
+            opacity: 0.7;
+        }
+
+        .review-dots {
+            position: absolute;
+            bottom: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 3px;
+            z-index: 12;
+        }
+
+        .review-dot {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .review-dot.active {
+            background: rgba(180, 25, 35, 0.8);
+            width: 10px;
+            border-radius: 2px;
+        }
+
+        .review-count {
+            position: absolute;
+            right: 5px;
+            top: 43px;
+            z-index: 12;
+            font-size: 7px;
+            font-weight: 700;
+            color: rgba(235, 235, 240, 0.5);
+            font-family: 'Rubik', Arial, sans-serif;
+            letter-spacing: 0.2px;
+        }
+
+        .review-rating {
+            position: absolute;
+            left: 5px;
+            top: 43px;
+            z-index: 12;
+            font-size: 7px;
+            font-weight: 700;
+            color: rgba(255, 200, 50, 0.7);
+            font-family: 'Rubik', Arial, sans-serif;
+            letter-spacing: 0.2px;
+        }
+
         .vignette {
             position: fixed;
             top: 0;
@@ -714,6 +869,48 @@
                 top: 4px;
                 right: 4px;
             }
+            .reviews-inner-frame {
+                left: 8px;
+                top: 35px;
+                width: 94%;
+                height: 68px;
+            }
+            .review-text {
+                font-size: 6px;
+                max-height: 25px;
+            }
+            .review-name {
+                font-size: 6px;
+            }
+            .review-star {
+                width: 6px;
+                height: 6px;
+            }
+            .review-nav {
+                width: 12px;
+                height: 12px;
+            }
+            .review-nav-icon {
+                width: 5px;
+                height: 5px;
+            }
+            .review-dot {
+                width: 2px;
+                height: 2px;
+            }
+            .review-dot.active {
+                width: 7px;
+            }
+            .review-count {
+                font-size: 5px;
+                top: 38px;
+                right: 4px;
+            }
+            .review-rating {
+                font-size: 5px;
+                top: 38px;
+                left: 4px;
+            }
         }
     </style>
 </head>
@@ -802,13 +999,112 @@
             </div>
         </div>
 
-        <div class="frame frame-small">
+        <div class="frame frame-small" id="reviewsFrame">
             <div class="fourth-title">
                 <span class="fourth-red">Від</span><span class="fourth-white">гуки</span>
             </div>
+            <div class="reviews-inner-frame">
+                <button class="review-nav prev" onclick="changeReview(-1)">
+                    <svg class="review-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+                <div class="reviews-slider" id="reviewsSlider">
+                    <div class="review-slide">
+                        <div class="review-stars">
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <div class="review-text">Дуже задоволена заняттями! Олексій чудово пояснює матеріал.</div>
+                        <div class="review-name">Марія, 17 років</div>
+                    </div>
+                    <div class="review-slide">
+                        <div class="review-stars">
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <div class="review-text">Син займається 3 місяці, вже бачу великий прогрес. Рекомендую!</div>
+                        <div class="review-name">Олена, мама учня</div>
+                    </div>
+                    <div class="review-slide">
+                        <div class="review-stars">
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg class="review-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <div class="review-text">Найкращий репетитор! За 2 місяці підготовки склав ЗНО на 190 балів.</div>
+                        <div class="review-name">Андрій, 18 років</div>
+                    </div>
+                </div>
+                <button class="review-nav next" onclick="changeReview(1)">
+                    <svg class="review-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </button>
+                <div class="review-dots" id="reviewDots">
+                    <div class="review-dot active" onclick="goToReview(0)"></div>
+                    <div class="review-dot" onclick="goToReview(1)"></div>
+                    <div class="review-dot" onclick="goToReview(2)"></div>
+                </div>
+            </div>
+            <div class="review-rating">★ 4.9</div>
+            <div class="review-count">14 відгуків</div>
         </div>
     </div>
 
     <div class="vignette"></div>
+
+    <script>
+        let currentReview = 0;
+        const totalReviews = 3;
+        let autoScrollInterval;
+
+        function updateSlider() {
+            const slider = document.getElementById('reviewsSlider');
+            slider.style.transform = `translateX(-${currentReview * 100}%)`;
+            
+            const dots = document.querySelectorAll('.review-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentReview);
+            });
+        }
+
+        function changeReview(direction) {
+            currentReview = (currentReview + direction + totalReviews) % totalReviews;
+            updateSlider();
+            resetAutoScroll();
+        }
+
+        function goToReview(index) {
+            currentReview = index;
+            updateSlider();
+            resetAutoScroll();
+        }
+
+        function resetAutoScroll() {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = setInterval(() => {
+                currentReview = (currentReview + 1) % totalReviews;
+                updateSlider();
+            }, 4000);
+        }
+
+        autoScrollInterval = setInterval(() => {
+            currentReview = (currentReview + 1) % totalReviews;
+            updateSlider();
+        }, 4000);
+
+        const reviewsFrame = document.getElementById('reviewsFrame');
+        reviewsFrame.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+        reviewsFrame.addEventListener('mouseleave', resetAutoScroll);
+    </script>
 </body>
 </html>
