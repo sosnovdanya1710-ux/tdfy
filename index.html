@@ -713,17 +713,16 @@
             margin: 5px 0;
         }
 
-        /* Ценовые карточки */
+        /* Одна большая карточка по центру */
         .price-cards {
             position: absolute;
-            left: 15px;
-            right: 15px;
+            left: 25%;
+            right: 25%;
             top: 42px;
             bottom: 12px;
             display: flex;
-            gap: 8px;
             z-index: 11;
-            align-items: flex-end;
+            align-items: center;
         }
 
         .price-card {
@@ -742,19 +741,8 @@
             box-shadow: 0 0 15px rgba(255,255,255,0.04), inset 0 0 15px rgba(255,255,255,0.03);
             position: relative;
             overflow: hidden;
-        }
-
-        .price-card.tall {
-            height: 115%;
+            height: 100%;
             justify-content: center;
-            margin-bottom: 16px;
-            min-height: 115%;
-        }
-
-        .price-card.short {
-            height: 85%;
-            justify-content: center;
-            margin-bottom: 8px;
         }
 
         .price-title {
@@ -767,11 +755,6 @@
             font-family: 'Rubik', Arial, sans-serif;
         }
 
-        .price-card.short .price-title {
-            font-size: 11px;
-            font-weight: 900;
-        }
-
         .price-amount {
             font-size: 22px;
             font-weight: 900;
@@ -781,11 +764,6 @@
             text-shadow: 0 0 6px rgba(180, 25, 35, 0.2);
             margin: 4px 0;
             font-family: 'Rubik', Arial, sans-serif;
-        }
-
-        .price-card.short .price-amount {
-            font-size: 19px;
-            font-weight: 900;
         }
 
         .price-amount-white {
@@ -801,11 +779,6 @@
             white-space: nowrap;
             letter-spacing: 0.2px;
             font-family: 'Rubik', Arial, sans-serif;
-        }
-
-        .price-card.short .price-sub {
-            font-size: 10px;
-            font-weight: 700;
         }
 
         /* Звездочка популярное */
@@ -977,38 +950,19 @@
                 width: 80%;
             }
             .price-cards {
-                left: 10px;
-                right: 10px;
+                left: 20%;
+                right: 20%;
                 top: 38px;
                 bottom: 8px;
-                gap: 5px;
-            }
-            .price-card.tall {
-                margin-bottom: 11px;
-            }
-            .price-card.short {
-                margin-bottom: 5px;
-            }
-            .price-card {
-                border-radius: 20px;
             }
             .price-title {
                 font-size: 10px;
             }
-            .price-card.short .price-title {
-                font-size: 8px;
-            }
             .price-amount {
                 font-size: 17px;
             }
-            .price-card.short .price-amount {
-                font-size: 14px;
-            }
             .price-sub {
                 font-size: 9px;
-            }
-            .price-card.short .price-sub {
-                font-size: 7px;
             }
             .popular-badge {
                 width: 9px;
@@ -1079,27 +1033,15 @@
         </div>
 
         <div class="frame frame-small">
+            <div class="vertical-line-right"></div>
             <div class="third-title">
                 <span class="third-red">Вар</span><span class="third-white">тість</span>
             </div>
             <div class="price-cards">
-                <div class="price-card short">
+                <div class="price-card">
                     <div class="price-title">Разове</div>
                     <div class="price-amount">200 <span class="price-amount-white">₴</span></div>
                     <div class="price-sub">1 заняття</div>
-                </div>
-                <div class="price-card tall">
-                    <svg class="popular-badge" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                    </svg>
-                    <div class="price-title">Стандарт</div>
-                    <div class="price-amount">1400 <span class="price-amount-white">₴</span></div>
-                    <div class="price-sub">7 занять</div>
-                </div>
-                <div class="price-card tall">
-                    <div class="price-title">Максимум</div>
-                    <div class="price-amount">6000 <span class="price-amount-white">₴</span></div>
-                    <div class="price-sub">30 занять</div>
                 </div>
             </div>
         </div>
