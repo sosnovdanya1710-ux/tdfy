@@ -469,7 +469,6 @@
             gap: 8px;
             z-index: 11;
             align-items: flex-end;
-            perspective: 1000px;
         }
 
         .price-card {
@@ -477,6 +476,7 @@
             background: rgba(255,255,255,0.02);
             border: 1.5px solid rgba(255,255,255,0.15);
             border-radius: 15px;
+            padding: 8px 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -486,10 +486,7 @@
             min-width: 0;
             box-shadow: 0 0 15px rgba(255,255,255,0.04), inset 0 0 15px rgba(255,255,255,0.03);
             position: relative;
-            transition: transform 0.6s ease;
-            transform-style: preserve-3d;
-            cursor: pointer;
-            overflow: visible;
+            overflow: hidden;
         }
 
         .price-card.tall {
@@ -505,42 +502,8 @@
             margin-bottom: 8px;
         }
 
-        .price-card.flipped {
-            transform: rotateY(180deg);
-        }
-
-        .price-front,
-        .price-back {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 6px 4px;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            border-radius: 15px;
-        }
-
-        .price-front {
-            background: rgba(255,255,255,0.02);
-            z-index: 2;
-        }
-
-        .price-back {
-            background: rgba(255,255,255,0.02);
-            transform: rotateY(180deg);
-            z-index: 1;
-            border: 1.5px solid rgba(255,255,255,0.15);
-        }
-
         .price-title {
-            font-size: 11px;
+            font-size: 13px;
             font-weight: 700;
             letter-spacing: 0.3px;
             text-transform: uppercase;
@@ -549,52 +512,32 @@
         }
 
         .price-amount {
-            font-size: 19px;
+            font-size: 22px;
             font-weight: 800;
             color: rgba(180, 25, 35, 0.8);
             letter-spacing: 0.5px;
             white-space: nowrap;
             text-shadow: 0 0 8px rgba(180, 25, 35, 0.3);
-            margin: 3px 0;
+            margin: 4px 0;
         }
 
         .price-sub {
-            font-size: 10px;
+            font-size: 12px;
             font-weight: 500;
             color: rgba(235, 235, 240, 0.6);
             white-space: nowrap;
             letter-spacing: 0.2px;
         }
 
-        .plus-icon-small {
-            position: absolute;
-            right: 5px;
-            bottom: 5px;
-            width: 20px;
-            height: 20px;
-            filter: brightness(0) invert(1);
-            opacity: 0.35;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            stroke-width: 4;
-            z-index: 3;
-        }
-
-        .plus-icon-small:hover {
-            opacity: 0.6;
-        }
-
         /* Звездочка популярное */
         .popular-badge {
             position: absolute;
-            top: 4px;
-            right: 4px;
-            width: 12px;
-            height: 12px;
+            top: 5px;
+            right: 5px;
+            width: 18px;
+            height: 18px;
             filter: brightness(0) invert(1);
-            opacity: 0.7;
-            z-index: 3;
+            opacity: 0.8;
         }
 
         .vignette {
@@ -716,25 +659,19 @@
                 margin-bottom: 5px;
             }
             .price-title {
-                font-size: 9px;
+                font-size: 10px;
             }
             .price-amount {
-                font-size: 15px;
+                font-size: 17px;
             }
             .price-sub {
-                font-size: 8px;
-            }
-            .plus-icon-small {
-                width: 16px;
-                height: 16px;
-                right: 4px;
-                bottom: 4px;
+                font-size: 9px;
             }
             .popular-badge {
-                width: 10px;
-                height: 10px;
-                top: 3px;
-                right: 3px;
+                width: 14px;
+                height: 14px;
+                top: 4px;
+                right: 4px;
             }
         }
     </style>
@@ -803,44 +740,23 @@
                 <span class="third-red">Вар</span><span class="third-white">тість</span>
             </div>
             <div class="price-cards">
-                <div class="price-card short" onclick="flipCard(this)">
-                    <div class="price-front">
-                        <div class="price-title">Разове</div>
-                        <div class="price-amount">200 ₴</div>
-                        <div class="price-sub">1 заняття</div>
-                    </div>
-                    <div class="price-back"></div>
-                    <svg class="plus-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
-                        <line x1="12" y1="5" x2="12" y2="19"/>
-                        <line x1="5" y1="12" x2="19" y2="12"/>
-                    </svg>
+                <div class="price-card short">
+                    <div class="price-title">Разове</div>
+                    <div class="price-amount">200 ₴</div>
+                    <div class="price-sub">1 заняття</div>
                 </div>
-                <div class="price-card tall" onclick="flipCard(this)">
-                    <div class="price-front">
-                        <svg class="popular-badge" viewBox="0 0 24 24" fill="currentColor">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                        </svg>
-                        <div class="price-title">Стандарт</div>
-                        <div class="price-amount">1400 ₴</div>
-                        <div class="price-sub">7 занять</div>
-                    </div>
-                    <div class="price-back"></div>
-                    <svg class="plus-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
-                        <line x1="12" y1="5" x2="12" y2="19"/>
-                        <line x1="5" y1="12" x2="19" y2="12"/>
+                <div class="price-card tall">
+                    <svg class="popular-badge" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                     </svg>
+                    <div class="price-title">Стандарт</div>
+                    <div class="price-amount">1400 ₴</div>
+                    <div class="price-sub">7 занять</div>
                 </div>
-                <div class="price-card tall" onclick="flipCard(this)">
-                    <div class="price-front">
-                        <div class="price-title">Максимум</div>
-                        <div class="price-amount">6000 ₴</div>
-                        <div class="price-sub">30 занять</div>
-                    </div>
-                    <div class="price-back"></div>
-                    <svg class="plus-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
-                        <line x1="12" y1="5" x2="12" y2="19"/>
-                        <line x1="5" y1="12" x2="19" y2="12"/>
-                    </svg>
+                <div class="price-card tall">
+                    <div class="price-title">Максимум</div>
+                    <div class="price-amount">6000 ₴</div>
+                    <div class="price-sub">30 занять</div>
                 </div>
             </div>
         </div>
@@ -853,11 +769,5 @@
     </div>
 
     <div class="vignette"></div>
-
-    <script>
-        function flipCard(card) {
-            card.classList.toggle('flipped');
-        }
-    </script>
 </body>
 </html>
