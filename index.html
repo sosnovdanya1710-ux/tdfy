@@ -591,6 +591,7 @@
 
         .modal-input:focus {
             border-color: rgba(200, 15, 25, 0.5);
+            outline: none;
         }
 
         .modal-input::placeholder {
@@ -605,26 +606,28 @@
             font-family: 'Rubik', Arial, sans-serif;
             margin-top: 5px;
             display: none;
+            transition: opacity 0.3s ease;
         }
 
         .modal-error.show {
             display: block;
+            opacity: 1;
         }
 
         .modal-options {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 20px;
+            margin-top: 12px;
         }
 
         .modal-option {
-            padding: 10px 18px;
+            padding: 8px 12px;
             border: 1.5px solid rgba(255,255,255,0.2);
-            border-radius: 15px;
+            border-radius: 12px;
             background: rgba(255,255,255,0.03);
             color: rgba(255,255,255,0.6);
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -634,6 +637,12 @@
             flex: 1;
             min-width: 45%;
             text-align: center;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .modal-option.selected {
@@ -641,6 +650,10 @@
             background: rgba(180, 15, 25, 0.25);
             color: rgba(255, 255, 255, 0.85);
             box-shadow: 0 0 15px rgba(200, 15, 25, 0.3);
+        }
+
+        .modal-option:focus {
+            outline: none;
         }
 
         .modal-progress {
@@ -669,6 +682,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Rubik', Arial, sans-serif;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .modal-btn:active {
@@ -695,6 +710,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Rubik', Arial, sans-serif;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .modal-back-btn:active {
@@ -715,8 +732,29 @@
             gap: 15px;
             padding: 20px;
             z-index: 102;
-            background: rgba(10, 5, 6, 0.9);
+            background: rgba(255,255,255,0.01);
             border-radius: 30px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .final-check {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid rgba(200, 15, 25, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(180, 15, 25, 0.15);
+            box-shadow: 0 0 30px rgba(200, 15, 25, 0.3);
+        }
+
+        .final-check-icon {
+            width: 25px;
+            height: 25px;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
         }
 
         .final-title {
@@ -735,6 +773,13 @@
             text-align: center;
         }
 
+        .final-line {
+            width: 80%;
+            height: 1.5px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 8px rgba(255,255,255,0.02), inset 0 0 8px rgba(255,255,255,0.02);
+        }
+
         .final-btn {
             padding: 15px 35px;
             border: 1.5px solid rgba(200, 15, 25, 0.65);
@@ -749,11 +794,48 @@
             font-family: 'Rubik', Arial, sans-serif;
             text-align: center;
             text-decoration: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .final-btn:active {
             transform: scale(0.95);
             background: rgba(180, 15, 25, 0.38);
+        }
+
+        /* Лоадер */
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 1);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .loader-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .loader-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* Заголовки в малых рамках */
@@ -1390,7 +1472,7 @@
             <div class="title-left">
                 <span class="title-red">Викладач</span> <span class="title-white">Англійської</span>
             </div>
-            <button class="btn-red" onclick="openModal()">
+            <button class="btn-red" onclick="openModal('signup')">
                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
                     <circle cx="9" cy="7" r="4"/>
@@ -1399,7 +1481,7 @@
                 </svg>
                 Записатись
             </button>
-            <button class="btn-white">
+            <button class="btn-white" onclick="openModal('trial')">
                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
                     <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
@@ -1688,11 +1770,22 @@
             <button class="modal-back-btn" id="modalBackBtn" onclick="prevStep()" style="display:none;">← Назад</button>
             <button class="modal-btn" id="modalNextBtn" onclick="nextStep()">Далі</button>
             <div class="final-screen" id="finalScreen" style="display:none;">
+                <div class="final-check">
+                    <svg class="final-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
                 <div class="final-title">Опитування завершено!</div>
                 <div class="final-subtitle">Напишіть викладачу для запису</div>
+                <div class="final-line"></div>
                 <a class="final-btn" id="finalBtn" href="#" target="_blank">Написати викладачу</a>
             </div>
         </div>
+    </div>
+
+    <!-- Лоадер -->
+    <div class="loader-overlay" id="loaderOverlay">
+        <div class="loader-spinner"></div>
     </div>
 
     <script>
@@ -1700,6 +1793,7 @@
         const totalSteps = 5;
         let selectedOption = null;
         let userData = {};
+        let currentMode = 'signup';
 
         const steps = [
             {
@@ -1724,7 +1818,7 @@
                 type: 'options',
                 question: 'Ваш рівень <span class="modal-question-red">англійської?</span>',
                 key: 'level',
-                options: ['A1', 'A2', 'B1', 'B2', 'C1']
+                options: ['A1', 'A2', 'B1', 'B2']
             },
             {
                 type: 'options',
@@ -1740,7 +1834,8 @@
             }
         ];
 
-        function openModal() {
+        function openModal(mode) {
+            currentMode = mode;
             document.getElementById('modalOverlay').classList.add('active');
             document.body.classList.add('no-scroll');
             resetModal();
@@ -1785,20 +1880,24 @@
                     if (step.validation(input.value)) {
                         userData[step.key] = input.value;
                         errorEl.classList.remove('show');
+                        errorEl.style.display = 'none';
                         goNext();
                     } else {
                         errorEl.textContent = step.errorMsg;
                         errorEl.classList.add('show');
+                        errorEl.style.display = 'block';
                     }
                 }
             } else if (step.type === 'options') {
                 if (selectedOption) {
                     userData[step.key] = selectedOption;
                     errorEl.classList.remove('show');
+                    errorEl.style.display = 'none';
                     goNext();
                 } else {
                     errorEl.textContent = 'Будь ласка, оберіть варіант';
                     errorEl.classList.add('show');
+                    errorEl.style.display = 'block';
                 }
             }
         }
@@ -1809,8 +1908,16 @@
                 selectedOption = null;
                 updateModal();
             } else {
-                showFinalScreen();
+                showLoader();
             }
+        }
+
+        function showLoader() {
+            document.getElementById('loaderOverlay').classList.add('active');
+            setTimeout(function() {
+                document.getElementById('loaderOverlay').classList.remove('active');
+                showFinalScreen();
+            }, 2000);
         }
 
         function showFinalScreen() {
@@ -1828,9 +1935,14 @@
             const goal = userData.goal || '';
             const time = userData.time || '';
             
-            const message = encodeURIComponent('Добрий день! Хотів би записатись на навчання.\n\nМене звати: ' + name + '\nВік: ' + age + '\nРівень англійської: ' + level + '\nМета: ' + goal + '\nЗручний час: ' + time);
+            let message = '';
+            if (currentMode === 'signup') {
+                message = 'Добрий день! Хотів би записатись на навчання.\n\nМене звати: ' + name + '\nВік: ' + age + '\nРівень англійської: ' + level + '\nМета: ' + goal + '\nЗручний час: ' + time;
+            } else {
+                message = 'Добрий день! Хотів би записатись на пробний урок.\n\nМене звати: ' + name + '\nВік: ' + age + '\nРівень англійської: ' + level + '\nМета: ' + goal + '\nЗручний час: ' + time;
+            }
             
-            document.getElementById('finalBtn').href = 'https://t.me/Rac12qwr?text=' + message;
+            document.getElementById('finalBtn').href = 'https://t.me/Rac12qwr?text=' + encodeURIComponent(message);
             document.getElementById('finalScreen').style.display = 'flex';
         }
 
@@ -1843,6 +1955,7 @@
             const errorEl = document.getElementById('modalError');
             
             errorEl.classList.remove('show');
+            errorEl.style.display = 'none';
             document.getElementById('modalQuestion').innerHTML = step.question;
             progress.textContent = currentStep + '/' + totalSteps;
             
@@ -1898,6 +2011,7 @@
             document.querySelectorAll('.modal-option').forEach(o => o.classList.remove('selected'));
             el.classList.add('selected');
             document.getElementById('modalError').classList.remove('show');
+            document.getElementById('modalError').style.display = 'none';
         }
 
         let currentReview = 0;
@@ -1929,6 +2043,14 @@
 
         // Инициализация
         showReview(0);
+
+        // Показать лоадер при загрузке страницы
+        window.addEventListener('load', function() {
+            document.getElementById('loaderOverlay').classList.add('active');
+            setTimeout(function() {
+                document.getElementById('loaderOverlay').classList.remove('active');
+            }, 2000);
+        });
     </script>
 </body>
 </html>
