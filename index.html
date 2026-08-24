@@ -489,9 +489,9 @@
         .modal-frame {
             width: 100%;
             max-width: 350px;
-            height: 280px;
+            height: 260px;
             border: 1.5px solid rgba(255,255,255,0.1);
-            border-radius: 25px;
+            border-radius: 30px;
             background: rgba(255,255,255,0.01);
             box-shadow: 0 0 10px rgba(255,255,255,0.02), inset 0 0 10px rgba(255,255,255,0.02);
             backdrop-filter: blur(20px);
@@ -578,6 +578,15 @@
             outline: none;
             margin-top: 15px;
             transition: border 0.3s ease;
+            -moz-appearance: textfield;
+            -webkit-appearance: none;
+            appearance: textfield;
+        }
+
+        .modal-input::-webkit-inner-spin-button,
+        .modal-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
 
         .modal-input:focus {
@@ -588,10 +597,53 @@
             color: rgba(255,255,255,0.3);
         }
 
+        .modal-error {
+            font-size: 11px;
+            font-weight: 500;
+            color: rgba(255, 80, 80, 0.7);
+            letter-spacing: 0.2px;
+            font-family: 'Rubik', Arial, sans-serif;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .modal-error.show {
+            display: block;
+        }
+
+        .modal-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .modal-option {
+            padding: 10px 18px;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            background: rgba(255,255,255,0.03);
+            color: rgba(255,255,255,0.6);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rubik', Arial, sans-serif;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        .modal-option.selected {
+            border-color: rgba(200, 15, 25, 0.65);
+            background: rgba(180, 15, 25, 0.25);
+            color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 0 15px rgba(200, 15, 25, 0.3);
+        }
+
         .modal-progress {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
+            top: 20px;
+            right: 55px;
             font-size: 12px;
             font-weight: 600;
             color: rgba(255,255,255,0.4);
@@ -601,7 +653,7 @@
 
         .modal-btn {
             position: absolute;
-            bottom: 20px;
+            bottom: 15px;
             right: 20px;
             padding: 10px 25px;
             border: 1.5px solid rgba(200, 15, 25, 0.65);
@@ -619,6 +671,31 @@
         .modal-btn:active {
             transform: scale(0.95);
             background: rgba(180, 15, 25, 0.38);
+        }
+
+        .modal-btn.disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .modal-back-btn {
+            position: absolute;
+            bottom: 15px;
+            left: 20px;
+            padding: 10px 20px;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            background: transparent;
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rubik', Arial, sans-serif;
+        }
+
+        .modal-back-btn:active {
+            transform: scale(0.95);
         }
 
         /* Заголовки в малых рамках */
@@ -1543,25 +1620,55 @@
                     <line x1="6" y1="6" x2="18" y2="18"/>
                 </svg>
             </button>
+            <span class="modal-progress" id="modalProgress">1/5</span>
             <div class="modal-question" id="modalQuestion">
                 <span class="modal-question-white">Як вас</span> <span class="modal-question-red">звати?</span>
             </div>
             <div class="modal-line"></div>
-            <input type="text" class="modal-input" id="modalInput" placeholder="Ваше ім'я...">
-            <span class="modal-progress" id="modalProgress">1/5</span>
-            <button class="modal-btn" onclick="nextStep()">Далі</button>
+            <div id="modalContent"></div>
+            <span class="modal-error" id="modalError"></span>
+            <button class="modal-back-btn" id="modalBackBtn" onclick="prevStep()" style="display:none;">← Назад</button>
+            <button class="modal-btn" id="modalNextBtn" onclick="nextStep()">Далі</button>
         </div>
     </div>
 
     <script>
         let currentStep = 1;
         const totalSteps = 5;
-        const questions = [
-            { question: 'Як вас <span class="modal-question-red">звати?</span>', placeholder: 'Ваше ім\'я...' },
-            { question: 'Скільки вам <span class="modal-question-red">років?</span>', placeholder: 'Ваш вік...' },
-            { question: 'Який ваш рівень <span class="modal-question-red">англійської?</span>', placeholder: 'Наприклад: A1, B1, C1...' },
-            { question: 'Яка ваша <span class="modal-question-red">мета?</span>', placeholder: 'Наприклад: розмовна мова...' },
-            { question: 'Ваш <span class="modal-question-red">телефон?</span>', placeholder: '+380...' }
+        let selectedOption = null;
+
+        const steps = [
+            {
+                type: 'input',
+                question: 'Як вас <span class="modal-question-red">звати?</span>',
+                placeholder: 'Ваше ім\'я...',
+                inputType: 'text',
+                validation: (val) => val.length >= 2 && val.length <= 20 && /^[А-Яа-яЄєІіЇїҐґ\s]+$/.test(val),
+                errorMsg: 'Введіть ім\'я від 2 до 20 символів (тільки літери)'
+            },
+            {
+                type: 'input',
+                question: 'Скільки вам <span class="modal-question-red">років?</span>',
+                placeholder: 'Ваш вік...',
+                inputType: 'number',
+                validation: (val) => val.length > 0 && /^[0-9]+$/.test(val) && parseInt(val) >= 11 && parseInt(val) <= 100,
+                errorMsg: 'Введіть вік цифрами (від 11 до 100)'
+            },
+            {
+                type: 'options',
+                question: 'Ваш рівень <span class="modal-question-red">англійської?</span>',
+                options: ['A1', 'A2', 'B1', 'B2', 'C1']
+            },
+            {
+                type: 'options',
+                question: 'Яка ваша <span class="modal-question-red">мета?</span>',
+                options: ['Розмовна', 'Граматика', 'Для роботи', 'Для школи', 'Інше']
+            },
+            {
+                type: 'options',
+                question: 'Коли зручно <span class="modal-question-red">займатись?</span>',
+                options: ['Ранок', 'День', 'Вечір', 'Вихідні']
+            }
         ];
 
         function openModal() {
@@ -1577,25 +1684,111 @@
 
         function resetModal() {
             currentStep = 1;
+            selectedOption = null;
             updateModal();
         }
 
-        function nextStep() {
-            if (currentStep < totalSteps) {
-                currentStep++;
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                selectedOption = null;
                 updateModal();
-            } else {
-                closeModal();
+            }
+        }
+
+        function nextStep() {
+            const step = steps[currentStep - 1];
+            const content = document.getElementById('modalContent');
+            const errorEl = document.getElementById('modalError');
+
+            if (step.type === 'input') {
+                const input = content.querySelector('.modal-input');
+                if (input) {
+                    if (step.validation(input.value)) {
+                        errorEl.classList.remove('show');
+                        if (currentStep < totalSteps) {
+                            currentStep++;
+                            selectedOption = null;
+                            updateModal();
+                        } else {
+                            closeModal();
+                        }
+                    } else {
+                        errorEl.textContent = step.errorMsg;
+                        errorEl.classList.add('show');
+                    }
+                }
+            } else if (step.type === 'options') {
+                if (selectedOption) {
+                    errorEl.classList.remove('show');
+                    if (currentStep < totalSteps) {
+                        currentStep++;
+                        selectedOption = null;
+                        updateModal();
+                    } else {
+                        closeModal();
+                    }
+                } else {
+                    errorEl.textContent = 'Будь ласка, оберіть варіант';
+                    errorEl.classList.add('show');
+                }
             }
         }
 
         function updateModal() {
-            const q = questions[currentStep - 1];
-            document.getElementById('modalQuestion').innerHTML = q.question;
-            document.getElementById('modalInput').placeholder = q.placeholder;
-            document.getElementById('modalInput').value = '';
-            document.getElementById('modalProgress').textContent = currentStep + '/' + totalSteps;
-            document.querySelector('.modal-btn').textContent = currentStep === totalSteps ? 'Готово' : 'Далі';
+            const step = steps[currentStep - 1];
+            const content = document.getElementById('modalContent');
+            const progress = document.getElementById('modalProgress');
+            const nextBtn = document.getElementById('modalNextBtn');
+            const backBtn = document.getElementById('modalBackBtn');
+            const errorEl = document.getElementById('modalError');
+            
+            errorEl.classList.remove('show');
+            document.getElementById('modalQuestion').innerHTML = step.question;
+            progress.textContent = currentStep + '/' + totalSteps;
+            
+            if (currentStep === totalSteps) {
+                nextBtn.textContent = 'Готово';
+            } else {
+                nextBtn.textContent = 'Далі';
+            }
+
+            if (currentStep > 1) {
+                backBtn.style.display = 'block';
+            } else {
+                backBtn.style.display = 'none';
+            }
+
+            if (step.type === 'input') {
+                content.innerHTML = '<input type="' + step.inputType + '" class="modal-input" id="modalInput" placeholder="' + step.placeholder + '">';
+                
+                const input = content.querySelector('.modal-input');
+                if (input) {
+                    input.addEventListener('input', function() {
+                        if (step.inputType === 'text') {
+                            this.value = this.value.replace(/[^А-Яа-яЄєІіЇїҐґ\s]/g, '');
+                        } else if (step.inputType === 'number') {
+                            this.value = this.value.replace(/[^0-9]/g, '');
+                        }
+                    });
+                }
+            } else if (step.type === 'options') {
+                let optionsHtml = '<div class="modal-options">';
+                step.options.forEach(opt => {
+                    optionsHtml += '<button class="modal-option" onclick="selectOption(this, \'' + opt + '\')">' + opt + '</button>';
+                });
+                optionsHtml += '</div>';
+                content.innerHTML = optionsHtml;
+            }
+
+            nextBtn.classList.remove('disabled');
+        }
+
+        function selectOption(el, value) {
+            selectedOption = value;
+            document.querySelectorAll('.modal-option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('modalError').classList.remove('show');
         }
 
         let currentReview = 0;
