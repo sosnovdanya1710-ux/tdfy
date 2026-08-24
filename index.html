@@ -204,13 +204,6 @@
             border-radius: 35px;
         }
 
-        .frame-reviews {
-            height: 160px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 35px;
-        }
-
         /* Внутренняя рамка */
         .inner-frame {
             position: absolute;
@@ -247,7 +240,7 @@
             top: 50%;
             transform: translateY(-50%);
             width: 63%;
-            height: 100px;
+            height: 85px;
             border: 1.5px solid rgba(255,255,255,0.15);
             border-radius: 25px;
             background: rgba(255,255,255,0.02);
@@ -641,7 +634,7 @@
         .reviews-info {
             position: absolute;
             left: 5%;
-            top: 45%;
+            top: 65%;
             transform: translateY(-50%);
             z-index: 11;
             display: flex;
@@ -835,9 +828,10 @@
             transform: translateY(-50%);
             z-index: 9;
             overflow: hidden;
-            height: 80px;
+            height: 65px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            padding-top: 5px;
         }
 
         .review-slide {
@@ -847,10 +841,10 @@
             transition: all 0.4s ease;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 2px;
             align-items: flex-start;
             text-align: left;
-            padding: 0 5px;
+            padding: 0 2px;
         }
 
         .review-slide.active {
@@ -861,13 +855,21 @@
         .review-header {
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
+            gap: 6px;
             width: 100%;
         }
 
+        .review-header-left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
         .review-avatar {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             border: 1.5px solid rgba(255,255,255,0.3);
             flex-shrink: 0;
@@ -878,14 +880,14 @@
         }
 
         .review-avatar-icon {
-            width: 14px;
-            height: 14px;
+            width: 13px;
+            height: 13px;
             filter: brightness(0) invert(1);
             opacity: 0.6;
         }
 
         .review-name {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 800;
             color: rgba(255, 255, 255, 0.85);
             letter-spacing: 0.3px;
@@ -904,28 +906,29 @@
         .review-rating-number-small {
             font-size: 12px;
             font-weight: 800;
-            color: rgba(255, 200, 50, 0.9);
+            color: rgba(255, 255, 255, 0.8);
             letter-spacing: 0.2px;
             font-family: 'Rubik', Arial, sans-serif;
             white-space: nowrap;
         }
 
         .review-star-small {
-            width: 9px;
-            height: 9px;
-            fill: rgba(255, 200, 50, 0.8);
-            filter: drop-shadow(0 0 2px rgba(255, 200, 50, 0.4));
+            width: 10px;
+            height: 10px;
+            fill: rgba(255, 255, 255, 0.8);
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
             flex-shrink: 0;
         }
 
         .review-text {
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 500;
-            color: rgba(235, 235, 240, 0.65);
+            color: rgba(235, 235, 240, 0.6);
             letter-spacing: 0.2px;
-            line-height: 1.3;
+            line-height: 1.2;
             font-family: 'Rubik', Arial, sans-serif;
-            max-width: 95%;
+            max-width: 100%;
+            padding-left: 28px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -955,10 +958,6 @@
             }
             .frame-small {
                 height: 110px;
-                border-radius: 30px;
-            }
-            .frame-reviews {
-                height: 140px;
                 border-radius: 30px;
             }
             .photo {
@@ -1033,7 +1032,7 @@
                 top: 50%;
                 transform: translateY(-50%);
                 width: 60%;
-                height: 80px;
+                height: 70px;
                 border-radius: 20px;
             }
             .line-left {
@@ -1058,7 +1057,7 @@
             }
             .reviews-info {
                 left: 5%;
-                top: 45%;
+                top: 65%;
                 gap: 3px;
             }
             .reviews-count {
@@ -1132,25 +1131,27 @@
             .reviews-carousel {
                 left: 28px;
                 right: 28px;
-                height: 65px;
+                height: 50px;
+                padding-top: 3px;
             }
             .review-name {
-                font-size: 12px;
+                font-size: 11px;
             }
             .review-text {
-                font-size: 10px;
+                font-size: 8px;
+                padding-left: 24px;
             }
             .review-avatar {
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
             }
             .review-avatar-icon {
-                width: 12px;
-                height: 12px;
+                width: 11px;
+                height: 11px;
             }
             .review-star-small {
-                width: 7px;
-                height: 7px;
+                width: 8px;
+                height: 8px;
             }
             .review-rating-number-small {
                 font-size: 10px;
@@ -1240,7 +1241,7 @@
             </div>
         </div>
 
-        <div class="frame frame-reviews">
+        <div class="frame frame-small">
             <div class="vertical-line-right"></div>
             <div class="horizontal-line-reviews"></div>
             <div class="fourth-title">
@@ -1265,13 +1266,15 @@
                 <div class="reviews-carousel" id="reviewsCarousel">
                     <div class="review-slide active">
                         <div class="review-header">
-                            <div class="review-avatar">
-                                <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
+                            <div class="review-header-left">
+                                <div class="review-avatar">
+                                    <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <span class="review-name">Олена.М.</span>
                             </div>
-                            <span class="review-name">Олена, 18</span>
                             <div class="review-rating-small">
                                 <span class="review-rating-number-small">5.0</span>
                                 <svg class="review-star-small" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1281,13 +1284,15 @@
                     </div>
                     <div class="review-slide">
                         <div class="review-header">
-                            <div class="review-avatar">
-                                <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
+                            <div class="review-header-left">
+                                <div class="review-avatar">
+                                    <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <span class="review-name">Максим.К.</span>
                             </div>
-                            <span class="review-name">Максим, 21</span>
                             <div class="review-rating-small">
                                 <span class="review-rating-number-small">4.8</span>
                                 <svg class="review-star-small" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1297,13 +1302,15 @@
                     </div>
                     <div class="review-slide">
                         <div class="review-header">
-                            <div class="review-avatar">
-                                <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
+                            <div class="review-header-left">
+                                <div class="review-avatar">
+                                    <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <span class="review-name">Софія.Б.</span>
                             </div>
-                            <span class="review-name">Софія, 17</span>
                             <div class="review-rating-small">
                                 <span class="review-rating-number-small">5.0</span>
                                 <svg class="review-star-small" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1313,13 +1320,15 @@
                     </div>
                     <div class="review-slide">
                         <div class="review-header">
-                            <div class="review-avatar">
-                                <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
+                            <div class="review-header-left">
+                                <div class="review-avatar">
+                                    <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <span class="review-name">Артем.Л.</span>
                             </div>
-                            <span class="review-name">Артем, 19</span>
                             <div class="review-rating-small">
                                 <span class="review-rating-number-small">4.9</span>
                                 <svg class="review-star-small" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1329,13 +1338,15 @@
                     </div>
                     <div class="review-slide">
                         <div class="review-header">
-                            <div class="review-avatar">
-                                <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
+                            <div class="review-header-left">
+                                <div class="review-avatar">
+                                    <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <span class="review-name">Ірина.П.</span>
                             </div>
-                            <span class="review-name">Ірина, 22</span>
                             <div class="review-rating-small">
                                 <span class="review-rating-number-small">5.0</span>
                                 <svg class="review-star-small" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1345,13 +1356,15 @@
                     </div>
                     <div class="review-slide">
                         <div class="review-header">
-                            <div class="review-avatar">
-                                <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
+                            <div class="review-header-left">
+                                <div class="review-avatar">
+                                    <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <span class="review-name">Дмитро.С.</span>
                             </div>
-                            <span class="review-name">Дмитро, 20</span>
                             <div class="review-rating-small">
                                 <span class="review-rating-number-small">4.7</span>
                                 <svg class="review-star-small" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1361,13 +1374,15 @@
                     </div>
                     <div class="review-slide">
                         <div class="review-header">
-                            <div class="review-avatar">
-                                <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
+                            <div class="review-header-left">
+                                <div class="review-avatar">
+                                    <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <span class="review-name">Анна.В.</span>
                             </div>
-                            <span class="review-name">Анна, 18</span>
                             <div class="review-rating-small">
                                 <span class="review-rating-number-small">5.0</span>
                                 <svg class="review-star-small" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1377,13 +1392,15 @@
                     </div>
                     <div class="review-slide">
                         <div class="review-header">
-                            <div class="review-avatar">
-                                <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
+                            <div class="review-header-left">
+                                <div class="review-avatar">
+                                    <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <span class="review-name">Віктор.Г.</span>
                             </div>
-                            <span class="review-name">Віктор, 23</span>
                             <div class="review-rating-small">
                                 <span class="review-rating-number-small">4.9</span>
                                 <svg class="review-star-small" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1393,13 +1410,15 @@
                     </div>
                     <div class="review-slide">
                         <div class="review-header">
-                            <div class="review-avatar">
-                                <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
+                            <div class="review-header-left">
+                                <div class="review-avatar">
+                                    <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <span class="review-name">Катя.О.</span>
                             </div>
-                            <span class="review-name">Катя, 16</span>
                             <div class="review-rating-small">
                                 <span class="review-rating-number-small">4.8</span>
                                 <svg class="review-star-small" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1409,13 +1428,15 @@
                     </div>
                     <div class="review-slide">
                         <div class="review-header">
-                            <div class="review-avatar">
-                                <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
+                            <div class="review-header-left">
+                                <div class="review-avatar">
+                                    <svg class="review-avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <span class="review-name">Богдан.Т.</span>
                             </div>
-                            <span class="review-name">Богдан, 24</span>
                             <div class="review-rating-small">
                                 <span class="review-rating-number-small">5.0</span>
                                 <svg class="review-star-small" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
