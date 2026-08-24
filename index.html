@@ -489,7 +489,7 @@
         .modal-frame {
             width: 100%;
             max-width: 350px;
-            height: 200px;
+            height: 280px;
             border: 1.5px solid rgba(255,255,255,0.1);
             border-radius: 25px;
             background: rgba(255,255,255,0.01);
@@ -500,8 +500,8 @@
             transform: scale(0.8);
             transition: all 0.5s ease;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-start;
+            justify-content: flex-start;
             flex-direction: column;
             padding: 20px;
         }
@@ -543,8 +543,9 @@
             font-weight: 700;
             letter-spacing: 0.3px;
             font-family: 'Rubik', Arial, sans-serif;
-            margin-bottom: 12px;
-            text-align: center;
+            margin-bottom: 8px;
+            text-align: left;
+            color: rgba(255, 255, 255, 0.85);
         }
 
         .modal-question-white {
@@ -561,6 +562,63 @@
             height: 1.5px;
             background: rgba(255, 255, 255, 0.1);
             box-shadow: 0 0 8px rgba(255,255,255,0.02), inset 0 0 8px rgba(255,255,255,0.02);
+            margin-top: 5px;
+        }
+
+        .modal-input {
+            width: 100%;
+            height: 40px;
+            background: rgba(255,255,255,0.03);
+            border: 1.5px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            color: rgba(255,255,255,0.85);
+            font-family: 'Rubik', Arial, sans-serif;
+            font-size: 14px;
+            padding: 0 12px;
+            outline: none;
+            margin-top: 15px;
+            transition: border 0.3s ease;
+        }
+
+        .modal-input:focus {
+            border-color: rgba(200, 15, 25, 0.5);
+        }
+
+        .modal-input::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .modal-progress {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.3px;
+            font-family: 'Rubik', Arial, sans-serif;
+        }
+
+        .modal-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 25px;
+            border: 1.5px solid rgba(200, 15, 25, 0.65);
+            border-radius: 20px;
+            background: rgba(180, 15, 25, 0.3);
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rubik', Arial, sans-serif;
+        }
+
+        .modal-btn:active {
+            transform: scale(0.95);
+            background: rgba(180, 15, 25, 0.38);
         }
 
         /* Заголовки в малых рамках */
@@ -1485,22 +1543,59 @@
                     <line x1="6" y1="6" x2="18" y2="18"/>
                 </svg>
             </button>
-            <div class="modal-question">
+            <div class="modal-question" id="modalQuestion">
                 <span class="modal-question-white">Як вас</span> <span class="modal-question-red">звати?</span>
             </div>
             <div class="modal-line"></div>
+            <input type="text" class="modal-input" id="modalInput" placeholder="Ваше ім'я...">
+            <span class="modal-progress" id="modalProgress">1/5</span>
+            <button class="modal-btn" onclick="nextStep()">Далі</button>
         </div>
     </div>
 
     <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+        const questions = [
+            { question: 'Як вас <span class="modal-question-red">звати?</span>', placeholder: 'Ваше ім\'я...' },
+            { question: 'Скільки вам <span class="modal-question-red">років?</span>', placeholder: 'Ваш вік...' },
+            { question: 'Який ваш рівень <span class="modal-question-red">англійської?</span>', placeholder: 'Наприклад: A1, B1, C1...' },
+            { question: 'Яка ваша <span class="modal-question-red">мета?</span>', placeholder: 'Наприклад: розмовна мова...' },
+            { question: 'Ваш <span class="modal-question-red">телефон?</span>', placeholder: '+380...' }
+        ];
+
         function openModal() {
             document.getElementById('modalOverlay').classList.add('active');
             document.body.classList.add('no-scroll');
+            resetModal();
         }
 
         function closeModal() {
             document.getElementById('modalOverlay').classList.remove('active');
             document.body.classList.remove('no-scroll');
+        }
+
+        function resetModal() {
+            currentStep = 1;
+            updateModal();
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateModal();
+            } else {
+                closeModal();
+            }
+        }
+
+        function updateModal() {
+            const q = questions[currentStep - 1];
+            document.getElementById('modalQuestion').innerHTML = q.question;
+            document.getElementById('modalInput').placeholder = q.placeholder;
+            document.getElementById('modalInput').value = '';
+            document.getElementById('modalProgress').textContent = currentStep + '/' + totalSteps;
+            document.querySelector('.modal-btn').textContent = currentStep === totalSteps ? 'Готово' : 'Далі';
         }
 
         let currentReview = 0;
